@@ -16,6 +16,7 @@ lazy val root = (project in file("."))
     css := {
       val cmd =
         s"npx tailwindcss -i ${sourceDirectory.value.toString}/main/css/creative-scala.css -o src/main/resources/creativescala/css/creative-scala.css"
+      println(cmd)
       cmd.!
     },
     pluginCrossBuild / sbtVersion := {

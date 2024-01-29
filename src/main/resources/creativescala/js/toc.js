@@ -1,9 +1,12 @@
-
+// Reformats table of contents so it can be styled as we desire
 function tocPatch() {
-  const node = document.querySelector('ul.nav-list');
+  // All the TOCs (there should be two, for mobile and desktop.)
+  const nodes = document.querySelectorAll('ul.nav-list');
 
-  // () => Array[Array[Element]]
-  function makeChapters() {
+  // Node => Array[Array[Element]]
+  //
+  // Collect the chapters into a data structure
+  function makeChapters(node) {
     // Array[Array[Element]]
     //
     // Each Element is a TOC link. The first element is the chapter title
@@ -72,13 +75,16 @@ function tocPatch() {
   }
 
   function makeToc() {
-    const chapters = makeChapters();
-    console.log("chapters", chapters);
-    const toc = chapters.map(chapter => makeChapterToc(chapter));
+    nodes.forEach(node => {
+      const chapters = makeChapters(node);
+      // console.log("chapters", chapters);
+      const toc = chapters.map(chapter => makeChapterToc(chapter));
 
-    node.replaceChildren(...toc);
+      node.replaceChildren(...toc);
+    });
   }
 
   makeToc();
 }
+// Run it when the page loads
 addEventListener('load', () => tocPatch());

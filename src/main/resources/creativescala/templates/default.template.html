@@ -27,14 +27,14 @@
     <nav id="topbar">
       <details>
         <summary>${cursor.root.title}</summary>
-        @:navigationTree { entries = [{ target = "/", excludeRoot = true, depth = 2 }]}
+        @:navigationTree { entries = [{ target = "/", excludeSections = true, excludeRoot = true, depth = 3 }]}
       </details>
     </nav>
     <nav id="sidebar">
         @:navigationTree {
         entries = [
         { target = "/", excludeSections = true, depth = 1 }
-        { target = "/", excludeRoot = true, excludeSections = true, excludeSelf = true, depth = 3 }
+        { target = "/", excludeRoot = true, excludeSections = true, depth = 3 }
         ]
         }
     </nav>

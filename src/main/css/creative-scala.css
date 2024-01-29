@@ -5,23 +5,32 @@
 body {
     @apply text-slate-900 text-lg font-serif bg-white xl:flex;
 }
+
+/* Topbar (mobile) navigation */
 nav#topbar {
-    @apply w-full flex justify-around content-center text-white bg-slate-800 p-2 text-xl xl:hidden;
+    @apply w-full flex justify-start content-center text-white bg-slate-800 px-12 py-2 text-xl xl:hidden;
+}
+nav#topbar details summary {
+    @apply text-pink-300;
 }
 nav#topbar p {
     @apply p-0 m-0;
 }
+
+/* Sidebar (desktop) navigation */
 nav#sidebar {
     @apply bg-slate-800 hidden max-w-sm p-12 xl:flex-none xl:block;
 }
+nav#sidebar ul.nav-list > li:first-child {
+    @apply uppercase;
+}
+
+/* General navigation styling */
 .nav-list details summary {
     @apply text-pink-300;
 }
 ul.nav-list:first-child {
     @apply mt-0;
-}
-ul.nav-list > li:first-child {
-    @apply uppercase;
 }
 .level1 {
     @apply list-none mt-4;
