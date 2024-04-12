@@ -22,19 +22,6 @@ object CreativeScalaThemePlugin extends AutoPlugin {
   override def trigger = allRequirements
 
   object autoImport {
-    val creativeScalaTheme = CreativeScalaTheme
-    val creativeScalaDirectives = CreativeScalaDirectives
+    val CreativeScalaTheme = creativescala.CreativeScalaTheme
   }
-
-  // override lazy val globalSettings: Seq[Setting[_]] = Seq(
-  //   helloGreeting := "hi",
-  // )
-
-  // override lazy val projectSettings: Seq[Setting[_]] = Seq(
-  //   hello := {
-  //     val s = streams.value
-  //     val g = helloGreeting.value
-  //     s.log.info(g)
-  //   }
-  // )
 }

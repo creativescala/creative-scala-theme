@@ -5,10 +5,11 @@ import cats.implicits._
 import laika.ast._
 import laika.api.bundle._
 
-object CreativeScalaDirectives extends DirectiveRegistry {
+final class CreativeScalaDirectives(jsPaths: Seq[Path], cssPaths: Seq[Path])
+    extends DirectiveRegistry {
 
   override val description: String =
-    "Directive to work with CreativeScala SVG pictures."
+    "Directive to work with CreativeScala theme."
 
   val leftArrow = "←"
   val rightArrow = "→"
@@ -95,11 +96,11 @@ object CreativeScalaDirectives extends DirectiveRegistry {
 
       (attribute(0).as[String]).map { (key) => Text(s"Figure $key") }
     }
-  //
-  // Insert a reference to a footnote
-  //
-  // Parameters:
-  // key: String. The name of the footnote being referred to.
+
+  /** Insert a reference to a footnote
+    *
+    * Parameters: key: String. The name of the footnote being referred to.
+    */
   val fnref =
     SpanDirectives.create("fnref") {
       import SpanDirectives.dsl._
@@ -116,12 +117,8 @@ object CreativeScalaDirectives extends DirectiveRegistry {
       }
     }
 
-  // @:exercise(title)
-  // Content
-  // @:@
-  // @:solution
-  // Solution content
-  // @:@
+  /** Block to delimit an exercise. Use with solution.
+    */
   val exercise =
     BlockDirectives.create("exercise") {
       import BlockDirectives.dsl._
@@ -233,9 +230,18 @@ object CreativeScalaDirectives extends DirectiveRegistry {
         TemplateString("""<link rel="stylesheet" type="text/css" href="""")
       val templateEnd = TemplateString("""" />""")
 
-      val css = TemplateElement(RawLink.internal(CreativeScalaTheme.cssPath))
-
-      cursor.map(_ => TemplateSpanSequence(templateStart, css, templateEnd))
+      cursor.map(_ =>
+        TemplateSpanSequence(
+          cssPaths.flatMap(c =>
+            Seq(
+              templateStart,
+              TemplateElement(RawLink.internal(c)),
+              templateEnd
+            )
+          ),
+          Options()
+        )
+      )
     }
 
   val includeJs: TemplateDirectives.Directive =
@@ -247,12 +253,14 @@ object CreativeScalaDirectives extends DirectiveRegistry {
 
       cursor.map(_ =>
         TemplateSpanSequence(
-          templateStart,
-          TemplateElement(RawLink.internal(CreativeScalaTheme.tocJsPath)),
-          templateEnd,
-          templateStart,
-          TemplateElement(RawLink.internal(CreativeScalaTheme.solutionJsPath)),
-          templateEnd
+          jsPaths.flatMap(s =>
+            Seq(
+              templateStart,
+              TemplateElement(RawLink.internal(s)),
+              templateEnd
+            )
+          ),
+          Options()
         )
       )
     }

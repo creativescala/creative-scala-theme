@@ -22,32 +22,51 @@ import cats.effect.Resource
 import cats.effect.Async
 import laika.ast.DefaultTemplatePath
 import laika.ast.Path
+import sbt._
 
-object CreativeScalaTheme extends ThemeProvider {
+final case class CreativeScalaTheme(jsPaths: Seq[Path], cssPaths: Seq[Path]) {
+  def addJs(path: Path): CreativeScalaTheme =
+    this.copy(jsPaths = path +: jsPaths)
+
+  def addCss(path: Path): CreativeScalaTheme =
+    this.copy(cssPaths = path +: cssPaths)
+
   val cssPath = Path.Root / "css" / "creative-scala.css"
   val tocJsPath = Path.Root / "js" / "toc.js"
   val solutionJsPath = Path.Root / "js" / "solution.js"
 
-  def build[F[_]: Async]: Resource[F, Theme[F]] =
-    ThemeBuilder("creative-scala")
-      .addInputs(
-        InputTree[F]
-          .addClassLoaderResource(
-            "creativescala/templates/default.template.html",
-            DefaultTemplatePath.forHTML
-          )
-          .addClassLoaderResource(
-            "creativescala/css/creative-scala.css",
-            cssPath
-          )
-          .addClassLoaderResource(
-            "creativescala/js/toc.js",
-            tocJsPath
-          )
-          .addClassLoaderResource(
-            "creativescala/js/solution.js",
-            solutionJsPath
-          )
+  def build: ThemeProvider =
+    new ThemeProvider {
+      val directives = new CreativeScalaDirectives(
+        tocJsPath +: solutionJsPath +: jsPaths,
+        cssPath +: cssPaths
       )
-      .build
+
+      def build[F[_]: Async]: Resource[F, Theme[F]] =
+        ThemeBuilder("creative-scala")
+          .addExtensions(directives)
+          .addInputs(
+            InputTree[F]
+              .addClassLoaderResource(
+                "creativescala/templates/default.template.html",
+                DefaultTemplatePath.forHTML
+              )
+              .addClassLoaderResource(
+                "creativescala/css/creative-scala.css",
+                cssPath
+              )
+              .addClassLoaderResource(
+                "creativescala/js/toc.js",
+                tocJsPath
+              )
+              .addClassLoaderResource(
+                "creativescala/js/solution.js",
+                solutionJsPath
+              )
+          )
+          .build
+    }
+}
+object CreativeScalaTheme {
+  val empty: CreativeScalaTheme = CreativeScalaTheme(Seq.empty, Seq.empty)
 }
