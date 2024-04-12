@@ -23,6 +23,7 @@ object CreativeScalaThemePlugin extends AutoPlugin {
 
   object autoImport {
     val creativeScalaTheme = CreativeScalaTheme
+    val creativeScalaDirectives = CreativeScalaDirectives
   }
 
   // override lazy val globalSettings: Seq[Setting[_]] = Seq(
