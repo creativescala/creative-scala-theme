@@ -3,6 +3,9 @@ import scala.sys.process._
 ThisBuild / tlBaseVersion := "0.1" // your current series x.y
 ThisBuild / organization := "org.creativescala"
 ThisBuild / organizationName := "Creative Scala"
+ThisBuild / homepage := Some(
+  url("https://github.com/creativescala/creative-scala-theme")
+)
 ThisBuild / startYear := Some(2024)
 ThisBuild / licenses := Seq(License.Apache2)
 ThisBuild / developers := List(
@@ -13,12 +16,6 @@ ThisBuild / developers := List(
 // true by default, set to false to publish to s01.oss.sonatype.org
 ThisBuild / tlSonatypeUseLegacyHost := true
 
-ThisBuild / version := "0.1.0-SNAPSHOT"
-ThisBuild / organization := "org.creativescala"
-ThisBuild / homepage := Some(
-  url("https://github.com/creativescala/creative-scala-theme")
-)
-
 val css = taskKey[Int]("Command to generate css")
 
 lazy val root = (project in file("."))
@@ -26,6 +23,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "creative-scala-theme",
     libraryDependencies += "org.typelevel" %% "laika-io" % "1.0.0",
+    // Run this command if you update the CSS
     css := {
       val cmd =
         s"npx tailwindcss -i ${sourceDirectory.value.toString}/main/css/creative-scala.css -o src/main/resources/creativescala/css/creative-scala.css"
