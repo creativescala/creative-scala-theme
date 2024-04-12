@@ -25,7 +25,6 @@ object CreativeScalaThemePlugin extends AutoPlugin {
     val creativeScalaTheme = CreativeScalaTheme
   }
 
-  import autoImport._
   // override lazy val globalSettings: Seq[Setting[_]] = Seq(
   //   helloGreeting := "hi",
   // )
