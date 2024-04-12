@@ -1,5 +1,18 @@
 import scala.sys.process._
 
+ThisBuild / tlBaseVersion := "0.1" // your current series x.y
+ThisBuild / organization := "org.creativescala"
+ThisBuild / organizationName := "Creative Scala"
+ThisBuild / startYear := Some(2024)
+ThisBuild / licenses := Seq(License.Apache2)
+ThisBuild / developers := List(
+  // your GitHub handle and name
+  tlGitHubDev("noelwelsh", "Noel Welsh")
+)
+
+// true by default, set to false to publish to s01.oss.sonatype.org
+ThisBuild / tlSonatypeUseLegacyHost := true
+
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "org.creativescala"
 ThisBuild / homepage := Some(
