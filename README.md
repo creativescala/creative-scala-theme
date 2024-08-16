@@ -2,7 +2,7 @@
 
 A Laika theme for Creative Scala.
 
-![Current Version](https://img.shields.io/maven-central/v/org.creativescala/creative-scala-theme_2.12)
+![Current Version](https://img.shields.io/maven-central/v/org.creativescala/creative-scala-theme_2.12_1.0)
 
 To use, add 
 
