@@ -18,8 +18,8 @@ package creativescala
 
 import cats.data._
 import cats.implicits._
-import laika.ast._
 import laika.api.bundle._
+import laika.ast._
 
 final class CreativeScalaDirectives(jsPaths: Seq[Path], cssPaths: Seq[Path])
     extends DirectiveRegistry {

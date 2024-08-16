@@ -15,6 +15,23 @@ ThisBuild / developers := List(
 
 // true by default, set to false to publish to s01.oss.sonatype.org
 ThisBuild / tlSonatypeUseLegacyHost := true
+ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
+
+// Run this (build) to do everything involved in building the project
+commands += Command.command("build") { state =>
+  "clean" ::
+    "compile" ::
+    "css" ::
+    "test" ::
+    "scalafixAll" ::
+    "scalafmtAll" ::
+    "headerCreateAll" ::
+    "githubWorkflowGenerate" ::
+    "dependencyUpdates" ::
+    "reload plugins; dependencyUpdates; reload return" ::
+    state
+}
 
 val css = taskKey[Int]("Command to generate css")
 
@@ -22,11 +39,11 @@ lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
   .settings(
     name := "creative-scala-theme",
-    libraryDependencies += "org.typelevel" %% "laika-io" % "1.0.0",
+    libraryDependencies += "org.typelevel" %% "laika-io" % "1.1.0",
     // Run this command if you update the CSS
     css := {
       val cmd =
-        s"npx tailwindcss -i ${sourceDirectory.value.toString}/main/css/creative-scala.css -o src/main/resources/creativescala/css/creative-scala.css"
+        s"npx tailwindcss -i ${sourceDirectory.value.toString}/main/css/creative-scala.css ${sourceDirectory.value.toString}/main/resources/creativescala/templates/default.template.html -o src/main/resources/creativescala/css/creative-scala.css"
       println(cmd)
       cmd.!
     },

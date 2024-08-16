@@ -7,7 +7,7 @@ A Laika theme for Creative Scala.
 To use, add 
 
 ```scala
-addSbtPlugin("org.creative-scala" %% "creative-scala-theme" % VERSION)
+addSbtPlugin("org.creativescala" %% "creative-scala-theme" % VERSION)
 ```
 
 to `project/plugins.sbt`, replacing `VERSION` with the version number above.

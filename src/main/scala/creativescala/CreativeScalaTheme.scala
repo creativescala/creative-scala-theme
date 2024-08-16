@@ -16,12 +16,12 @@
 
 package creativescala
 
-import laika.theme.*
-import laika.io.model.InputTree
-import cats.effect.Resource
 import cats.effect.Async
+import cats.effect.Resource
 import laika.ast.DefaultTemplatePath
 import laika.ast.Path
+import laika.io.model.InputTree
+import laika.theme._
 import sbt._
 
 final case class CreativeScalaTheme(jsPaths: Seq[Path], cssPaths: Seq[Path]) {
