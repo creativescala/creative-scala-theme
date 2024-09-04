@@ -152,7 +152,7 @@ function tocPatch() {
             name: itemName(item),
             href: itemHref(item),
             isActive: itemIsActive(item),
-            children: []
+            children: [],
           };
 
           children.push(hunk);
@@ -201,18 +201,19 @@ function tocPatch() {
       let details = document.createElement("details");
       let summary = document.createElement("summary");
       let h5 = document.createElement("h5");
+      let ul = document.createElement("ul");
+      let children = hunk.children.map((hunk) => hunkToTocItem(hunk));
+
       h5.append(link);
       summary.append(h5);
-      details.append(summary);
+      ul.append(...children);
+      details.append(summary, ul);
 
       if (hunk.active) {
         details.setAttribute("open", "true");
       }
 
       item.appendChild(details);
-
-      let children = hunk.children.map((hunk) => hunkToTocItem(hunk));
-      item.append(...children);
     }
 
     switch (hunk.type) {
