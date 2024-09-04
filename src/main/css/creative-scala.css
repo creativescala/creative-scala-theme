@@ -30,10 +30,21 @@ nav .nav-list li a {
   @apply text-sm font-sans;
 }
 nav .nav-list li li {
-  @apply mx-4;
+  @apply pl-4;
+}
+nav .nav-list .active {
+  @apply bg-slate-600;
 }
 nav .nav-list summary {
   @apply text-pink-300;
+}
+nav .nav-list li.part {
+  @apply mt-4;
+}
+nav .nav-list li.chapter {
+  @apply mt-2;
+}
+nav .nav-list li.section {
 }
 nav .nav-list li.part a {
   font-variant-caps: small-caps;

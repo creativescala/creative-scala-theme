@@ -655,13 +655,28 @@ nav .nav-list li a {
 }
 
 nav .nav-list li li {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  padding-left: 1rem;
+}
+
+nav .nav-list .active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
 }
 
 nav .nav-list summary {
   --tw-text-opacity: 1;
   color: rgb(249 168 212 / var(--tw-text-opacity));
+}
+
+nav .nav-list li.part {
+  margin-top: 1rem;
+}
+
+nav .nav-list li.chapter {
+  margin-top: 0.5rem;
+}
+
+nav .nav-list li.section {
 }
 
 nav .nav-list li.part a {

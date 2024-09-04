@@ -8,6 +8,7 @@ function tocPatch() {
   //   name: String,
   //   href: String,
   //   active: Boolean,
+  //   activeChild: Boolean,
   //   children: Array[Hunk]
   // }
   // type Type = "Part" | "Chapter" | "Section"
@@ -23,35 +24,38 @@ function tocPatch() {
   // how they are organized into Hunks.
   //
 
-  // (String, String, Boolean, Array[Hunk]) => Hunk
-  function part(name, href, active, children = []) {
+  // (String, String, Boolean, Boolean, Array[Hunk]) => Hunk
+  function part(name, href, active, activeChild, children = []) {
     return {
       type: "Part",
       name: name,
       href: href,
       active: active,
+      activeChild: activeChild,
       children: children,
     };
   }
 
-  // (String, String, Boolean, Array[Hunk]) => Hunk
-  function chapter(name, href, active, children = []) {
+  // (String, String, Boolean, Boolean, Array[Hunk]) => Hunk
+  function chapter(name, href, active, activeChild, children = []) {
     return {
       type: "Chapter",
       name: name,
       href: href,
       active: active,
+      activeChild: activeChild,
       children: children,
     };
   }
 
-  // (String, String, Boolean, Array[Hunk]) => Hunk
-  function section(name, href, active, children) {
+  // (String, String, Boolean, Boolean, Array[Hunk]) => Hunk
+  function section(name, href, active, activeChild, children) {
     return {
       type: "Section",
       name: name,
       href: href,
       active: active,
+      activeChild: activeChild,
       children: children,
     };
   }
@@ -93,15 +97,16 @@ function tocPatch() {
 
     if (item.classList.contains("nav-leaf")) {
       // It's a stand alone hunk with no children
-      hunk = chapter(itemName(item), itemHref(item), itemIsActive(item));
+      hunk = chapter(itemName(item), itemHref(item), itemIsActive(item), false);
     } else {
-      let [type, children] = itemChildren(2, rest);
+      let [type, activeChild, children] = itemChildren(2, rest);
       switch (type) {
         case "Part":
           hunk = part(
             itemName(item),
             itemHref(item),
             itemIsActive(item),
+            activeChild,
             children,
           );
         case "Chapter":
@@ -109,6 +114,7 @@ function tocPatch() {
             itemName(item),
             itemHref(item),
             itemIsActive(item),
+            activeChild,
             children,
           );
       }
@@ -126,11 +132,12 @@ function tocPatch() {
     }
   }
 
-  // (Int, Array[Element]) => [Type, Array[Hunk]]
+  // (Int, Array[Element]) => [Type, Boolean, Array[Hunk]]
   //
   // Rest is mutated
   function itemChildren(level, rest) {
     let children = [];
+    let active = false;
     let type = "Chapter";
 
     while (typeof (item = rest.shift()) !== "undefined") {
@@ -139,19 +146,24 @@ function tocPatch() {
         children.forEach((c) => (c.type = childType(type)));
         rest.unshift(item);
 
-        return [type, children];
+        return [type, active, children];
       } else if (item.classList.contains("level2")) {
         if (level > 2) {
           // We've finished finding the children for the prior element
           children.forEach((c) => (c.type = "Section"));
           rest.unshift(item);
 
-          return [type, children];
+          return [type, active, children];
         } else {
+          if (itemIsActive(item)) {
+            active = true;
+          }
+
           let hunk = {
             name: itemName(item),
             href: itemHref(item),
-            isActive: itemIsActive(item),
+            active: itemIsActive(item),
+            activeChild: false,
             children: [],
           };
 
@@ -165,10 +177,15 @@ function tocPatch() {
 
           return itemChildren(3, rest);
         } else {
+          if (itemIsActive(item)) {
+            active = true;
+          }
+
           let hunk = section(
             itemName(item),
             itemHref(item),
             itemIsActive(item),
+            false,
           );
 
           children.push(hunk);
@@ -195,6 +212,9 @@ function tocPatch() {
     if (hunk.children.length == 0) {
       item.classList.add("nav-leaf");
       item.appendChild(link);
+      if (hunk.active) {
+        item.classList.add("active");
+      }
     } else {
       item.classList.add("nav-node");
 
@@ -209,8 +229,11 @@ function tocPatch() {
       ul.append(...children);
       details.append(summary, ul);
 
-      if (hunk.active) {
+      if (hunk.active || hunk.activeChild) {
         details.setAttribute("open", "true");
+      }
+      if (hunk.active) {
+        summary.classList.add("active");
       }
 
       item.appendChild(details);
