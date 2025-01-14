@@ -1,6 +1,6 @@
 import scala.sys.process._
 
-ThisBuild / tlBaseVersion := "0.2" // your current series x.y
+ThisBuild / tlBaseVersion := "0.3" // your current series x.y
 ThisBuild / organization := "org.creativescala"
 ThisBuild / organizationName := "Creative Scala"
 ThisBuild / homepage := Some(
@@ -14,7 +14,7 @@ ThisBuild / developers := List(
 )
 
 // true by default, set to false to publish to s01.oss.sonatype.org
-ThisBuild / tlSonatypeUseLegacyHost := true
+ThisBuild / sonatypeCredentialHost := xerial.sbt.Sonatype.sonatypeLegacy
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
@@ -39,7 +39,8 @@ lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
   .settings(
     name := "creative-scala-theme",
-    libraryDependencies += "org.typelevel" %% "laika-io" % "1.1.0",
+    libraryDependencies += "org.typelevel" %% "laika-io" % "1.3.1",
+    Compile / run / fork := true,
     // Run this command if you update the CSS
     css := {
       val cmd =

@@ -18,18 +18,40 @@ package creativescala
 
 import cats.effect.Async
 import cats.effect.Resource
+import laika.api.config.ConfigBuilder
 import laika.ast.DefaultTemplatePath
 import laika.ast.Path
+import laika.helium.config.SingleTargetLink
+import laika.helium.config.TextLink
 import laika.io.model.InputTree
 import laika.theme._
 import sbt._
 
-final case class CreativeScalaTheme(jsPaths: Seq[Path], cssPaths: Seq[Path]) {
+final case class CreativeScalaTheme(
+    home: SingleTargetLink,
+    community: SingleTargetLink,
+    api: SingleTargetLink,
+    source: SingleTargetLink,
+    jsPaths: Seq[Path],
+    cssPaths: Seq[Path]
+) {
   def addJs(path: Path): CreativeScalaTheme =
     this.copy(jsPaths = path +: jsPaths)
 
   def addCss(path: Path): CreativeScalaTheme =
     this.copy(cssPaths = path +: cssPaths)
+
+  def withHome(home: SingleTargetLink): CreativeScalaTheme =
+    this.copy(home = home)
+
+  def withCommunity(community: SingleTargetLink): CreativeScalaTheme =
+    this.copy(community = community)
+
+  def withApi(api: SingleTargetLink): CreativeScalaTheme =
+    this.copy(api = api)
+
+  def withSource(source: SingleTargetLink): CreativeScalaTheme =
+    this.copy(source = source)
 
   val cssPath = Path.Root / "css" / "creative-scala.css"
   val tocJsPath = Path.Root / "js" / "toc.js"
@@ -42,9 +64,18 @@ final case class CreativeScalaTheme(jsPaths: Seq[Path], cssPaths: Seq[Path]) {
         cssPath +: cssPaths
       )
 
+      val baseConfig =
+        ConfigBuilder.empty
+          .withValue("cst.home", home)
+          .withValue("cst.community", community)
+          .withValue("cst.api", api)
+          .withValue("cst.source", source)
+          .build
+
       def build[F[_]: Async]: Resource[F, Theme[F]] =
         ThemeBuilder("creative-scala")
           .addExtensions(directives)
+          .addBaseConfig(baseConfig)
           .addInputs(
             InputTree[F]
               .addClassLoaderResource(
@@ -68,5 +99,13 @@ final case class CreativeScalaTheme(jsPaths: Seq[Path], cssPaths: Seq[Path]) {
     }
 }
 object CreativeScalaTheme {
-  val empty: CreativeScalaTheme = CreativeScalaTheme(Seq.empty, Seq.empty)
+  val empty: CreativeScalaTheme =
+    CreativeScalaTheme(
+      TextLink.internal(Path.Root / "README.md", "Home"),
+      TextLink.external("https://discord.gg", "Community"),
+      TextLink.external("https://javadoc.io", "API"),
+      TextLink.external("https://github.com", "Source"),
+      Seq.empty,
+      Seq.empty
+    )
 }

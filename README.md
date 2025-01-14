@@ -16,15 +16,19 @@ Then, in your `build.sbt`
 
 ```scala
 import laika.ast.Path
-
+import laika.helium.config.TextLink
 // Configure Laika
 Laika / sourceDirectories := Seq(
   mdocOut.value,
   "my" / "javascript", // the directory where JS is found
   "my" / "css" // the directory where CSS is found
 ),
-laikaTheme := CreativeScalaTheme(
-  Seq(Path.Root / "main.js"), // JS files to include
-  Seq(Path.Root / "main.css") // CSS files to include
- ).build
+laikaTheme := CreativeScalaTheme.empty
+  .withHome(TextLink.interal(Path.Root / "README.md", "My Project Name"))
+  .addJs(Path.Root / "main.js") // JS files to include
+  .addCss(Path.Root / "main.css") // CSS files to include
+  .build
 ```
+
+
+

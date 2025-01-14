@@ -1,4 +1,10 @@
 // Reformats table of contents so it can be styled as we desire
+//
+// Classes:
+// - nav-element: the full element containing the TOC entry
+// - nav-link: the link to the TOC entry
+// - nav-leaf: TOC entry without children
+// - nav-node: TOC entry with children
 function tocPatch() {
   // All the TOCs (there should be two, for mobile and desktop.)
   const nodes = document.querySelectorAll("ul.nav-list");
@@ -208,9 +214,10 @@ function tocPatch() {
     let link = document.createElement("a");
     link.setAttribute("href", hunk.href);
     link.appendChild(document.createTextNode(hunk.name));
+    link.classList.add("nav-link");
 
     if (hunk.children.length == 0) {
-      item.classList.add("nav-leaf");
+      item.classList.add("nav-leaf", "nav-element");
       item.appendChild(link);
       if (hunk.active) {
         item.classList.add("active");
@@ -226,6 +233,7 @@ function tocPatch() {
 
       h5.append(link);
       summary.append(h5);
+      summary.classList.add("nav-element");
       ul.append(...children);
       details.append(summary, ul);
 

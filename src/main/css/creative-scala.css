@@ -3,12 +3,36 @@
 @tailwind utilities;
 
 body {
-  @apply text-slate-900 text-lg font-serif bg-white xl:flex;
+  @apply text-slate-900 text-lg font-serif bg-white;
+}
+
+/** HEADER **/
+
+header {
+  @apply w-full z-50 top-0 bg-white sticky border-b border-pink-900/10 p-4;
+}
+
+header div#container {
+  @apply max-w-8xl mx-auto flex justify-between;
+}
+
+header nav#home {
+  @apply inline-block;
+}
+header nav#home a {
+  @apply text-sm text-pink-800 font-sans font-semibold py-4 hover:text-pink-600 no-underline;
+}
+
+header nav#external {
+  @apply inline-block;
+}
+header nav#external a {
+  @apply text-sm text-slate-900 hover:text-pink-800 font-sans font-semibold p-4 hover:rounded-lg hover:bg-pink-100 no-underline;
 }
 
 /* Topbar (mobile) navigation */
 nav#topbar {
-  @apply w-full flex justify-start content-center text-white bg-slate-800 px-12 py-2 text-xl xl:hidden;
+  @apply lg:hidden;
 }
 nav#topbar details summary {
   @apply text-pink-300;
@@ -17,80 +41,72 @@ nav#topbar p {
   @apply p-0 m-0;
 }
 
-/* Sidebar (desktop) navigation */
-nav#sidebar {
-  @apply bg-slate-800 hidden max-w-sm p-12 xl:flex-none xl:block;
-}
-nav#sidebar ul.nav-list > li:first-child {
-  @apply uppercase;
+/** CONTENT **/
+
+div#site-content {
+  @apply max-w-8xl mx-auto py-8 grid lg:grid-cols-sidebar-content;
 }
 
-/* General navigation styling */
-nav .nav-list li a {
-  @apply text-sm font-sans;
+div#page-content {
+  @apply grid md:grid-cols-content-navbar;
 }
-nav .nav-list li li {
-  @apply pl-4;
+
+/** SIDEBAR **/
+
+nav#sidebar {
+  @apply hidden min-w-60 max-w-md lg:flex-none lg:block mr-8;
 }
-nav .nav-list .active {
-  @apply bg-slate-600;
+nav#sidebar .nav-list li a {
+  @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:bg-slate-300 hover:rounded-e-full;
 }
-nav .nav-list summary {
-  @apply text-pink-300;
+nav#sidebar .nav-list li.level1 a {
+  @apply font-semibold;
 }
-nav .nav-list li.part {
-  @apply mt-4;
+nav#sidebar .nav-list li.level2 a {
+  @apply font-semibold mt-1;
 }
-nav .nav-list li.chapter {
-  @apply mt-2;
+nav#sidebar .nav-list li.level3 a {
+  @apply pl-8 mt-1;
 }
-nav .nav-list li.section {
+nav#sidebar .nav-list li.active a {
+  @apply bg-pink-300 hover:bg-pink-300 text-pink-800 rounded-e-full;
 }
-nav .nav-list li.part a {
-  font-variant-caps: small-caps;
-  @apply font-normal text-pink-300 my-2;
+
+/** PAGEBAR **/
+nav#pagebar p {
+  @apply text-sm text-pink-800 font-sans font-semibold;
 }
-nav .nav-list li.chapter a {
-  font-variant-caps: small-caps;
-  @apply font-normal text-pink-300 my-2;
+nav#pagebar li a {
+  @apply text-sm font-sans no-underline hover:text-pink-800;
 }
-nav .nav-list li.section a {
-  font-variant-caps: normal;
-  @apply text-slate-300 font-normal;
-}
-ul.nav-list:first-child {
-  @apply mt-0;
-}
-#content {
-  @apply flex-auto p-12;
+
+main#content {
+  @apply: mx-8;
 }
 
 main {
-  display: grid;
-  grid-template-columns:
-    [main-start] minmax(20ch, 70ch) [main-end] minmax(0ch, 20ch)
-    [overflow-end];
+  @apply max-w-prose;
 }
 h1,
 h2,
 h3,
 h4,
 h5 {
-  @apply text-pink-800 font-sans font-semibold;
+  @apply font-sans font-semibold;
 }
-h1 {
+main h1 {
   @apply text-6xl mb-16;
 }
-h2 {
+main h2 {
   @apply text-4xl mt-8 mb-4;
 }
-h3 {
+main h3 {
   @apply text-2xl mt-8 mb-4;
 }
-h4 {
+main h4 {
   @apply text-xl mt-8 mb-4;
 }
-h5 {
+main h5 {
   @apply text-lg mt-8 mb-4;
 }
 p {
