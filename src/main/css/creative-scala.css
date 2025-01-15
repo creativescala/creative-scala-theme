@@ -12,7 +12,7 @@ header {
   @apply w-full z-50 top-0 bg-white sticky border-b border-pink-900/10 p-4;
 }
 
-header div#container {
+header div#topbar {
   @apply max-w-8xl mx-auto flex justify-between;
 }
 
@@ -27,10 +27,10 @@ header nav#external {
   @apply inline-block;
 }
 header nav#external a {
-  @apply text-sm text-slate-900 hover:text-pink-800 font-sans font-semibold p-4 hover:rounded-lg hover:bg-pink-100 no-underline;
+  @apply text-sm text-slate-900 hover:text-pink-800 font-sans font-semibold p-4 no-underline;
 }
 
-/* Topbar (mobile) navigation */
+/** TOPBAR **/
 nav#topbar {
   @apply lg:hidden;
 }
@@ -41,23 +41,17 @@ nav#topbar p {
   @apply p-0 m-0;
 }
 
-/** CONTENT **/
-
-div#site-content {
-  @apply max-w-8xl mx-auto py-8 grid lg:grid-cols-sitebar-content;
-}
-
-div#page-content {
-  @apply grid md:grid-cols-content-navbar;
+/** MAIN **/
+main {
+  @apply max-w-8xl mx-auto py-8 min-h-screen flex;
 }
 
 /** SITEBAR **/
-
 nav#sitebar {
-  @apply hidden min-w-60 max-w-md lg:flex-none lg:block mr-8;
+  @apply hidden min-w-60 max-w-md lg:block mr-8;
 }
 nav#sitebar .nav-list li a {
-  @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:bg-slate-300 hover:rounded-e-full;
+  @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800;
 }
 nav#sitebar .nav-list li.level1 a {
   @apply font-semibold;
@@ -73,6 +67,9 @@ nav#sitebar .nav-list li.active a {
 }
 
 /** PAGEBAR **/
+nav#pagebar {
+  @apply hidden min-w-60 lg:block ml-8;
+}
 nav#pagebar p {
   @apply text-sm text-pink-800 font-sans font-semibold;
 }
@@ -80,155 +77,137 @@ nav#pagebar li a {
   @apply text-sm font-sans no-underline hover:text-pink-800;
 }
 
-main#content {
-  @apply: mx-8;
+/** CONTENTBAR **/
+div#contentbar {
+  @apply mx-8 w-full overflow-y-auto;
 }
 
-main {
-  @apply max-w-prose;
+/** PAGENAV **/
+a.pagenav {
+  @apply text-sm font-sans no-underline hover:no-underline hover:text-pink-800;
 }
-h1,
+
+/** CONTENT **/
+div#content h1,
 h2,
 h3,
 h4,
 h5 {
-  @apply font-sans font-semibold;
+  @apply font-sans font-semibold tracking-tight;
 }
-main h1 {
-  @apply text-6xl mb-16;
+div#content h1 {
+  @apply text-4xl mb-9;
 }
-main h2 {
-  @apply text-4xl mt-8 mb-4;
+div#content h2 {
+  @apply text-2xl mt-6 mb-4;
 }
-main h3 {
-  @apply text-2xl mt-8 mb-4;
+div#content h3 {
+  @apply text-xl mt-4 mb-2;
 }
-main h4 {
-  @apply text-xl mt-8 mb-4;
+div#content h4 {
+  @apply text-lg mt-4 mb-2;
 }
-main h5 {
-  @apply text-lg mt-8 mb-4;
+div#content h5 {
+  @apply text-lg mt-4 mb-2;
 }
-p {
+div#content p {
   @apply mb-4;
 }
-a {
-  @apply hover:underline hover:decoration-solid;
-}
-.content a {
+div#content a {
   @apply underline decoration-dotted decoration-1 hover:decoration-solid;
 }
-.content * {
-  grid-column-start: main-start;
-  grid-column-end: main-end;
-}
-.content ol.arabic {
+div#content ol.arabic {
   @apply list-decimal list-outside pl-4 mb-4;
 }
-.content ul {
+div#content ul {
   @apply list-disc list-outside pl-4 mb-4;
 }
-.content pre {
-  grid-column-start: main-start;
-  grid-column-end: overflow-end;
-}
-.content table.footnote tbody tr td {
+div#content table.footnote tbody tr td {
   @apply pr-4 text-sm;
 }
-pre {
-  @apply mb-4 p-2 bg-slate-100;
+div#content div.doodle {
+  @apply my-4 mx-auto;
 }
-.content div.doodle {
-  @apply my-4;
-  margin-left: auto;
-  margin-right: auto;
+div#content p img {
+  @apply my-4 mx-auto;
 }
-.content p img {
-  @apply my-4;
-  margin-left: auto;
-  margin-right: auto;
-}
-.content div.callout {
+div#content div.callout {
   @apply my-4 p-4;
 }
-.content div.info {
+div#content div.info {
   @apply bg-blue-200;
 }
-.content div.warn {
+div#content div.warn {
   @apply bg-amber-200;
 }
-details summary {
+div#content details summary {
   cursor: pointer;
   @apply text-yellow-800;
 }
-details summary > * {
+div#content details summary > * {
   display: inline;
 }
-.exercise {
+div#content .exercise {
+  @apply pb-4;
+}
+div#content .exercise * {
+  grid-column-start: main-start;
+  grid-column-end: main-end;
+}
+div#content .exercise pre {
+  grid-column-start: main-start;
+  grid-column-end: overflow-end;
+}
+div#content .solution {
   @apply pb-4;
   grid-column-start: main-start;
   grid-column-end: overflow-end;
+}
+div#content .solution details .solution-body {
   display: grid;
   grid-template-columns:
     [main-start] minmax(20ch, 70ch) [main-end] minmax(0ch, 20ch)
     [overflow-end];
 }
-.exercise * {
+div#content .solution details .solution-body * {
   grid-column-start: main-start;
   grid-column-end: main-end;
 }
-.exercise pre {
+div#content .solution details .solution-body pre {
   grid-column-start: main-start;
   grid-column-end: overflow-end;
 }
-.solution {
-  @apply pb-4;
-  grid-column-start: main-start;
-  grid-column-end: overflow-end;
+
+/** SYNTAX HIGHLIGHTING **/
+div#content pre {
+  @apply mb-4 px-4 py-2 bg-slate-800 text-slate-300 rounded-md;
 }
-.solution details .solution-body {
-  display: grid;
-  grid-template-columns:
-    [main-start] minmax(20ch, 70ch) [main-end] minmax(0ch, 20ch)
-    [overflow-end];
-}
-.solution details .solution-body * {
-  grid-column-start: main-start;
-  grid-column-end: main-end;
-}
-.solution details .solution-body pre {
-  grid-column-start: main-start;
-  grid-column-end: overflow-end;
-}
-code {
+div#content code {
   @apply text-sm;
   font-family: "Source Code Pro", ui-monospace, monospace;
 }
-pre code .number-literal,
+div#content pre code .number-literal,
 .char-literal,
 .boolean-literal,
 .string-literal {
-  @apply text-sky-600;
+  @apply text-sky-300;
 }
-pre code .keyword {
+div#content pre code .keyword {
   @apply text-rose-600;
 }
-pre code .identifier {
-  @apply text-slate-600;
+div#content pre code .identifier {
+  @apply text-pink-300;
 }
-pre code .type-name {
-  @apply text-green-600;
+div#content pre code .type-name {
+  @apply text-green-300;
 }
-pre code .declaration-name {
-  @apply text-blue-600;
+div#content pre code .declaration-name {
+  @apply text-blue-300;
 }
-pre code .comment {
+div#content pre code .comment {
   @apply italic;
 }
 
-.pageNavigation {
-  @apply mt-4 text-xl text-pink-800;
-}
 footer {
-  @apply mt-4 pt-4 border-t-2 border-slate-300 text-slate-300 text-center text-sm font-sans;
+  @apply mt-4 py-4 border-t border-pink-900/10 text-pink-900/60 text-center text-sm font-sans;
 }

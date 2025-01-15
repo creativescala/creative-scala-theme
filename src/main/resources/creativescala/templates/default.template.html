@@ -35,7 +35,7 @@
 
   <body>
     <header>
-      <div id="container">
+      <div id="topbar">
         <nav id="topbar">
           <details>
             <summary>${cursor.root.title}</summary>
@@ -48,26 +48,31 @@
       </div>
     </header>
 
-    <div id="site-content">
+    <main>
       <nav id="sitebar">
-        @:navigationTree { entries = [ { target = "/", excludeSections = true,
-        depth = 3 } ] }
+        <div class="fixed h-screen overflow-y-auto">
+          @:navigationTree { entries = [ { target = "/", excludeSections = true,
+          depth = 3 } ] }
+        </div>
       </nav>
-      <div id="page-content">
-        <main class="content">
-          ${cursor.currentDocument.content}
+      <div id="contentbar">
+        <div class="max-w-prose mx-auto">
+          <div id="content">${cursor.currentDocument.content}</div>
           <div class="flex flex-row justify-between">
             @:previousPage @:nextPage
           </div>
-        </main>
-        <nav id="pagebar">
+        </div>
+        <footer>
+          ${cursor.root.title} is copyright Noel Welsh. Built with 💖
+        </footer>
+      </div>
+      <nav id="pagebar">
+        <div class="fixed h-screen overflow-y-auto">
           <p>On This Page</p>
           @:navigationTree { entries = [ { target = "#", excludeRoot = true } ]
           }
-        </nav>
-      </div>
-    </div>
-
-    <footer>Creative Scala is copyright Noel Welsh</footer>
+        </div>
+      </nav>
+    </main>
   </body>
 </html>

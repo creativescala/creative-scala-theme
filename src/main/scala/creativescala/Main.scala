@@ -24,6 +24,7 @@ import laika.ast.Path
 import laika.config.ApiLinks
 import laika.config.LinkConfig
 import laika.config.SourceLinks
+import laika.config.SyntaxHighlighting
 import laika.helium.config.TextLink
 import laika.format._
 import laika.io.model._
@@ -34,7 +35,7 @@ object Main extends IOApp {
     val transformerIO = Transformer
       .from(Markdown)
       .to(HTML)
-      .using(Markdown.GitHubFlavor)
+      .using(Markdown.GitHubFlavor, SyntaxHighlighting)
       .withConfigValue(
         LinkConfig.empty
           .addApiLinks(
