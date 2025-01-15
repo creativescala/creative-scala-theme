@@ -37,7 +37,7 @@ div#topbar-nav {
   @apply z-50  h-svh h-screen w-svw w-screen backdrop-blur-sm bg-transparent;
 }
 div#topbar-nav-container {
-  @apply h-screen flex items-center justify-center;
+  @apply h-screen flex items-center justify-center overflow-y-auto overflow-x-auto;
 }
 nav#topbar ul {
   @apply p-4 text-lg font-sans;
