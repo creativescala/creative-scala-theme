@@ -29,6 +29,3 @@ laikaTheme := CreativeScalaTheme.empty
   .addCss(Path.Root / "main.css") // CSS files to include
   .build
 ```
-
-
-
