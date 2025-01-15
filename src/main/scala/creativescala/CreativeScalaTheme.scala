@@ -60,7 +60,7 @@ final case class CreativeScalaTheme(
   def build: ThemeProvider =
     new ThemeProvider {
       val directives = new CreativeScalaDirectives(
-        tocJsPath +: solutionJsPath +: jsPaths,
+        solutionJsPath +: jsPaths,
         cssPath +: cssPaths
       )
 
@@ -85,10 +85,6 @@ final case class CreativeScalaTheme(
               .addClassLoaderResource(
                 "creativescala/css/creative-scala.css",
                 cssPath
-              )
-              .addClassLoaderResource(
-                "creativescala/js/toc.js",
-                tocJsPath
               )
               .addClassLoaderResource(
                 "creativescala/js/solution.js",

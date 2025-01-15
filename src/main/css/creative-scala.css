@@ -7,7 +7,6 @@ body {
 }
 
 /** HEADER **/
-
 header {
   @apply w-full z-50 top-0 bg-white sticky border-b border-pink-900/10 p-4;
 }
@@ -34,13 +33,30 @@ header nav#external a {
 nav#topbar {
   @apply lg:hidden;
 }
-nav#topbar details summary {
-  @apply text-pink-300;
+div#topbar-nav {
+  @apply z-50  h-svh h-screen w-svw w-screen backdrop-blur-sm bg-transparent;
 }
-nav#topbar p {
-  @apply p-0 m-0;
+div#topbar-nav-container {
+  @apply h-screen flex items-center justify-center;
 }
-
+nav#topbar ul {
+  @apply p-4 text-lg font-sans;
+}
+nav#topbar ul li a {
+  @apply w-full p-4 block focus:no-underline rounded-md focus:ring-1 focus:ring-pink-800 focus:text-pink-800 hover:ring-1 hover:ring-pink-800 hover:text-pink-800;
+}
+nav#topbar ul li.level1 a {
+  @apply font-semibold;
+}
+nav#topbar ul li.level2 a {
+  @apply font-semibold mt-1;
+}
+nav#topbar ul li.level3 a {
+  @apply pl-8 mt-1;
+}
+nav#topbar ul li.active a {
+  @apply text-pink-800 hover:ring-0 focus:ring-0;
+}
 /** MAIN **/
 main {
   @apply max-w-8xl mx-auto py-8 min-h-screen flex;

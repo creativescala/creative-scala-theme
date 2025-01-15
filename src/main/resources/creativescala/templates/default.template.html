@@ -37,11 +37,29 @@
     <header>
       <div id="topbar">
         <nav id="topbar">
-          <details>
-            <summary>${cursor.root.title}</summary>
-            @:navigationTree { entries = [{ target = "/", excludeSections =
-            true, excludeRoot = true, depth = 3 }]}
-          </details>
+          <button
+            class="text-sm text-pink-800 font-sans font-semibold hover:text-pink-600 focus:text-pink-600"
+            popovertarget="topbar-nav"
+          >
+            Contents
+          </button>
+          <div id="topbar-nav" popover>
+            <div id="topbar-nav-container">
+              <div
+                class="p-4 mx-auto rounded-md bg-white border border-slate-900 relative"
+              >
+                <button
+                  class="absolute top-4 right-4 text-slate-900 hover:text-pink-800 focus:text-pink-800"
+                  popovertarget="topbar-nav"
+                  popovertargetaction="hide"
+                >
+                  ✕
+                </button>
+                @:navigationTree { entries = [{ target = "/", excludeSections =
+                true, depth = 3 }]}
+              </div>
+            </div>
+          </div>
         </nav>
         <nav id="home">${?cst.home}</nav>
         <nav id="external">${cst.community} ${cst.api} ${cst.source}</nav>
