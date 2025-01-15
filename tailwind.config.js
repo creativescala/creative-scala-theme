@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        "sidebar-content": "20rem auto",
+        "sitebar-content": "20rem auto",
         "content-navbar": "70ch auto",
       },
       maxWidth: {

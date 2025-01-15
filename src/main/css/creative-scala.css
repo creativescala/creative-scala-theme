@@ -44,31 +44,31 @@ nav#topbar p {
 /** CONTENT **/
 
 div#site-content {
-  @apply max-w-8xl mx-auto py-8 grid lg:grid-cols-sidebar-content;
+  @apply max-w-8xl mx-auto py-8 grid lg:grid-cols-sitebar-content;
 }
 
 div#page-content {
   @apply grid md:grid-cols-content-navbar;
 }
 
-/** SIDEBAR **/
+/** SITEBAR **/
 
-nav#sidebar {
+nav#sitebar {
   @apply hidden min-w-60 max-w-md lg:flex-none lg:block mr-8;
 }
-nav#sidebar .nav-list li a {
+nav#sitebar .nav-list li a {
   @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:bg-slate-300 hover:rounded-e-full;
 }
-nav#sidebar .nav-list li.level1 a {
+nav#sitebar .nav-list li.level1 a {
   @apply font-semibold;
 }
-nav#sidebar .nav-list li.level2 a {
+nav#sitebar .nav-list li.level2 a {
   @apply font-semibold mt-1;
 }
-nav#sidebar .nav-list li.level3 a {
+nav#sitebar .nav-list li.level3 a {
   @apply pl-8 mt-1;
 }
-nav#sidebar .nav-list li.active a {
+nav#sitebar .nav-list li.active a {
   @apply bg-pink-300 hover:bg-pink-300 text-pink-800 rounded-e-full;
 }
 

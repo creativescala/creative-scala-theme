@@ -733,9 +733,9 @@ div#page-content {
   }
 }
 
-/** SIDEBAR **/
+/** SITEBAR **/
 
-nav#sidebar {
+nav#sitebar {
   margin-right: 2rem;
   display: none;
   min-width: 15rem;
@@ -743,13 +743,13 @@ nav#sidebar {
 }
 
 @media (min-width: 1024px) {
-  nav#sidebar {
+  nav#sitebar {
     display: block;
     flex: none;
   }
 }
 
-nav#sidebar .nav-list li a {
+nav#sitebar .nav-list li a {
   display: block;
   width: 100%;
   padding-left: 1rem;
@@ -761,7 +761,7 @@ nav#sidebar .nav-list li a {
   line-height: 1.25rem;
 }
 
-nav#sidebar .nav-list li a:hover {
+nav#sitebar .nav-list li a:hover {
   border-start-end-radius: 9999px;
   border-end-end-radius: 9999px;
   --tw-bg-opacity: 1;
@@ -769,21 +769,21 @@ nav#sidebar .nav-list li a:hover {
   text-decoration-line: none;
 }
 
-nav#sidebar .nav-list li.level1 a {
+nav#sitebar .nav-list li.level1 a {
   font-weight: 600;
 }
 
-nav#sidebar .nav-list li.level2 a {
+nav#sitebar .nav-list li.level2 a {
   margin-top: 0.25rem;
   font-weight: 600;
 }
 
-nav#sidebar .nav-list li.level3 a {
+nav#sitebar .nav-list li.level3 a {
   margin-top: 0.25rem;
   padding-left: 2rem;
 }
 
-nav#sidebar .nav-list li.active a {
+nav#sitebar .nav-list li.active a {
   border-start-end-radius: 9999px;
   border-end-end-radius: 9999px;
   --tw-bg-opacity: 1;
@@ -792,7 +792,7 @@ nav#sidebar .nav-list li.active a {
   color: rgb(157 23 77 / var(--tw-text-opacity));
 }
 
-nav#sidebar .nav-list li.active a:hover {
+nav#sitebar .nav-list li.active a:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 168 212 / var(--tw-bg-opacity));
 }
