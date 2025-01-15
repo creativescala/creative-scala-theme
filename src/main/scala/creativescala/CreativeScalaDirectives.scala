@@ -211,7 +211,7 @@ final class CreativeScalaDirectives(jsPaths: Seq[Path], cssPaths: Seq[Path])
         val link =
           (title, path).mapN { (t, p) =>
             SpanLink(Seq(Text(leftArrow), t), InternalTarget(p))
-              .withStyle("pageNavigation")
+              .withStyle("pagenav")
           }
 
         TemplateElement(link.getOrElse(Text("")))
@@ -231,7 +231,7 @@ final class CreativeScalaDirectives(jsPaths: Seq[Path], cssPaths: Seq[Path])
         val link =
           (title, path).mapN { (t, p) =>
             SpanLink(Seq(t, Text(rightArrow)), InternalTarget(p))
-              .withStyle("pageNavigation")
+              .withStyle("pagenav")
           }
 
         TemplateElement(link.getOrElse(Text("")))

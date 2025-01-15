@@ -35,39 +35,62 @@
 
   <body>
     <header>
-      <div id="container">
+      <div id="topbar">
         <nav id="topbar">
-          <details>
-            <summary>${cursor.root.title}</summary>
-            @:navigationTree { entries = [{ target = "/", excludeSections =
-            true, excludeRoot = true, depth = 3 }]}
-          </details>
+          <button
+            class="text-sm text-pink-800 font-sans font-semibold hover:text-pink-600 focus:text-pink-600"
+            popovertarget="topbar-nav"
+          >
+            Contents
+          </button>
+          <div id="topbar-nav" popover>
+            <div id="topbar-nav-container">
+              <div
+                class="p-4 mx-auto rounded-md bg-white border border-slate-900 relative"
+              >
+                <button
+                  class="absolute top-4 right-4 text-slate-900 hover:text-pink-800 focus:text-pink-800"
+                  popovertarget="topbar-nav"
+                  popovertargetaction="hide"
+                >
+                  ✕
+                </button>
+                @:navigationTree { entries = [{ target = "/", excludeSections =
+                true, depth = 3 }]}
+              </div>
+            </div>
+          </div>
         </nav>
         <nav id="home">${?cst.home}</nav>
         <nav id="external">${cst.community} ${cst.api} ${cst.source}</nav>
       </div>
     </header>
 
-    <div id="site-content">
-      <nav id="sidebar">
-        @:navigationTree { entries = [ { target = "/", excludeSections = true,
-        depth = 3 } ] }
+    <main>
+      <nav id="sitebar">
+        <div class="fixed h-screen overflow-y-auto">
+          @:navigationTree { entries = [ { target = "/", excludeSections = true,
+          depth = 3 } ] }
+        </div>
       </nav>
-      <div id="page-content">
-        <main class="content">
-          ${cursor.currentDocument.content}
+      <div id="contentbar">
+        <div class="max-w-prose mx-auto">
+          <div id="content">${cursor.currentDocument.content}</div>
           <div class="flex flex-row justify-between">
             @:previousPage @:nextPage
           </div>
-        </main>
-        <nav id="pagebar">
+        </div>
+        <footer>
+          ${cursor.root.title} is copyright Noel Welsh. Built with 💖
+        </footer>
+      </div>
+      <nav id="pagebar">
+        <div class="fixed h-screen overflow-y-auto">
           <p>On This Page</p>
           @:navigationTree { entries = [ { target = "#", excludeRoot = true } ]
           }
-        </nav>
-      </div>
-    </div>
-
-    <footer>Creative Scala is copyright Noel Welsh</footer>
+        </div>
+      </nav>
+    </main>
   </body>
 </html>
