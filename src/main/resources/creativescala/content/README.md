@@ -41,7 +41,7 @@ This will generate output in the `target` directory. Open `target/index.html` in
 
 ### Developing Content
 
-When working on this theme you'll be spending most of your time working on the CSS in `src/main/css/creative-scala.css` and the template in `src/main/resources/creativescala/tempaltes/default.html.html`. The following sbt command will rebuild the CSS and then regenerate this site.
+When working on this theme you'll be spending most of your time working on the CSS in `src/main/css/creative-scala.css` and the template in `src/main/resources/creativescala/templates/default.html.html`. The following sbt command will rebuild the CSS and then regenerate this site.
 
 ```bash
 sbt css

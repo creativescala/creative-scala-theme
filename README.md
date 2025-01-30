@@ -29,3 +29,5 @@ laikaTheme := CreativeScalaTheme.empty
   .addCss(Path.Root / "main.css") // CSS files to include
   .build
 ```
+
+Full documentation is in `src/main/resources/creativescala/content`.

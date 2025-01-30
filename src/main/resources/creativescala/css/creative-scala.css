@@ -1194,6 +1194,11 @@ footer {
   color: rgb(157 23 77 / var(--tw-text-opacity));
 }
 
+.hover\:text-pink-900:hover {
+  --tw-text-opacity: 1;
+  color: rgb(131 24 67 / var(--tw-text-opacity));
+}
+
 .focus\:text-pink-600:focus {
   --tw-text-opacity: 1;
   color: rgb(219 39 119 / var(--tw-text-opacity));
