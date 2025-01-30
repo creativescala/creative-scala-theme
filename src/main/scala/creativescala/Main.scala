@@ -25,8 +25,8 @@ import laika.config.ApiLinks
 import laika.config.LinkConfig
 import laika.config.SourceLinks
 import laika.config.SyntaxHighlighting
-import laika.helium.config.TextLink
 import laika.format._
+import laika.helium.config.TextLink
 import laika.io.model._
 import laika.io.syntax._
 

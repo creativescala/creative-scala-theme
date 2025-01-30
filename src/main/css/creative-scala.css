@@ -1,6 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --grid-template-columns-sitebar-content: 20rem auto;
+  --grid-template-columns-content-navbar: 70ch auto;
+
+  --container-8xl: 90rem;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 body {
   @apply text-slate-900 text-lg font-serif bg-white;
@@ -34,7 +57,7 @@ nav#topbar {
   @apply lg:hidden;
 }
 div#topbar-nav {
-  @apply z-50  h-svh h-screen w-svw w-screen backdrop-blur-sm bg-transparent;
+  @apply z-50  h-svh h-screen w-svw w-screen backdrop-blur-xs bg-transparent;
 }
 div#topbar-nav-container {
   @apply h-screen flex items-center justify-center overflow-y-auto overflow-x-auto;

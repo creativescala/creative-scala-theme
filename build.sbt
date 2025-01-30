@@ -44,7 +44,7 @@ lazy val root = (project in file("."))
     // Run this command if you update the CSS
     css := {
       val cmd =
-        s"npx tailwindcss -i ${sourceDirectory.value.toString}/main/css/creative-scala.css -o src/main/resources/creativescala/css/creative-scala.css"
+        s"npx @tailwindcss/cli -i ${sourceDirectory.value.toString}/main/css/creative-scala.css -o src/main/resources/creativescala/css/creative-scala.css"
       println(cmd)
       cmd.!
     },
