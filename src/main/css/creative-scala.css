@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --grid-template-columns-sitebar-content: 20rem auto;
@@ -77,6 +77,9 @@ nav#topbar ul li.level2 a {
 nav#topbar ul li.level3 a {
   @apply pl-8 mt-1;
 }
+nav#topbar ul li.level4 a {
+  @apply pl-16 mt-1;
+}
 nav#topbar ul li.active a {
   @apply text-pink-800 hover:ring-0 focus:ring-0;
 }
@@ -100,6 +103,9 @@ nav#sitebar .nav-list li.level2 a {
 }
 nav#sitebar .nav-list li.level3 a {
   @apply pl-8 mt-1;
+}
+nav#sitebar .nav-list li.level4 a {
+  @apply pl-16 mt-1;
 }
 nav#sitebar .nav-list li.active a {
   @apply bg-pink-300 hover:bg-pink-300 text-pink-800 rounded-e-full;

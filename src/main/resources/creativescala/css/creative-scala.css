@@ -777,6 +777,10 @@ nav#topbar ul li.level3 a {
   margin-top: calc(var(--spacing) * 1);
   padding-left: calc(var(--spacing) * 8);
 }
+nav#topbar ul li.level4 a {
+  margin-top: calc(var(--spacing) * 1);
+  padding-left: calc(var(--spacing) * 16);
+}
 nav#topbar ul li.active a {
   color: var(--color-pink-800);
   &:hover {
@@ -837,6 +841,10 @@ nav#sitebar .nav-list li.level2 a {
 nav#sitebar .nav-list li.level3 a {
   margin-top: calc(var(--spacing) * 1);
   padding-left: calc(var(--spacing) * 8);
+}
+nav#sitebar .nav-list li.level4 a {
+  margin-top: calc(var(--spacing) * 1);
+  padding-left: calc(var(--spacing) * 16);
 }
 nav#sitebar .nav-list li.active a {
   border-start-end-radius: calc(infinity * 1px);
