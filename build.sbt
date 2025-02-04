@@ -1,6 +1,6 @@
 import scala.sys.process._
 
-ThisBuild / tlBaseVersion := "0.3" // your current series x.y
+ThisBuild / tlBaseVersion := "0.4" // your current series x.y
 ThisBuild / organization := "org.creativescala"
 ThisBuild / organizationName := "Creative Scala"
 ThisBuild / homepage := Some(
