@@ -29,9 +29,9 @@ import sbt._
 
 final case class CreativeScalaTheme(
     home: SingleTargetLink,
-    community: SingleTargetLink,
-    api: SingleTargetLink,
-    source: SingleTargetLink,
+    community: ExternalLink,
+    api: ExternalLink,
+    source: ExternalLink,
     jsPaths: Seq[Path],
     cssPaths: Seq[Path]
 ) {
@@ -44,13 +44,13 @@ final case class CreativeScalaTheme(
   def withHome(home: SingleTargetLink): CreativeScalaTheme =
     this.copy(home = home)
 
-  def withCommunity(community: SingleTargetLink): CreativeScalaTheme =
+  def withCommunity(community: ExternalLink): CreativeScalaTheme =
     this.copy(community = community)
 
-  def withApi(api: SingleTargetLink): CreativeScalaTheme =
+  def withApi(api: ExternalLink): CreativeScalaTheme =
     this.copy(api = api)
 
-  def withSource(source: SingleTargetLink): CreativeScalaTheme =
+  def withSource(source: ExternalLink): CreativeScalaTheme =
     this.copy(source = source)
 
   val cssPath = Path.Root / "css" / "creative-scala.css"
@@ -67,9 +67,9 @@ final case class CreativeScalaTheme(
       val baseConfig =
         ConfigBuilder.empty
           .withValue("cst.home", home)
-          .withValue("cst.community", community)
-          .withValue("cst.api", api)
-          .withValue("cst.source", source)
+          .withValue("cst.community", community.render)
+          .withValue("cst.api", api.render)
+          .withValue("cst.source", source.render)
           .build
 
       def build[F[_]: Async]: Resource[F, Theme[F]] =
@@ -98,9 +98,9 @@ object CreativeScalaTheme {
   val empty: CreativeScalaTheme =
     CreativeScalaTheme(
       TextLink.internal(Path.Root / "README.md", "Home"),
-      TextLink.external("https://discord.gg", "Community"),
-      TextLink.external("https://javadoc.io", "API"),
-      TextLink.external("https://github.com", "Source"),
+      ExternalLink("https://discord.gg", "Community"),
+      ExternalLink("https://javadoc.io", "API"),
+      ExternalLink("https://github.com", "Source"),
       Seq.empty,
       Seq.empty
     )

@@ -14,7 +14,7 @@ The instance of `CreativeScalaTheme`, created by the code `CreativeScalaTheme.em
 - `withApi`, which allows you to link to your API documentation. For most Scala projects this will be `javadoc.io`.
 - `withSource`, which allows you to specify the link to your source code, often on Github.
 
-All of these methods take a value of `SingleTargetLink`, which is taken from Laika's Helium theme. You'll need the import below to use it.
+The `withHome` method takes value of `SingleTargetLink`, which is taken from Laika's Helium theme. You'll need the import below to use it.
 
 ```scala
 import laika.helium.config.SingleTargetLink
@@ -25,4 +25,16 @@ This allows you specify links in a variety of formats, including images and icon
 ```scala
 TextLink.internal(Path.Root / "README.md", "Home"),
 TextLink.external("https://discord.gg", "Community"),
+```
+
+The other methods take an `ExternalLink`, which is defined by this theme. If you need an import, it is
+
+```scala
+import creativescala.ExternalLink
+```
+
+You can create an `ExternalLink` by specifying a URL and the text for the link. For example:
+
+```scala
+ExternalLink("https://github.com", "Source")
 ```

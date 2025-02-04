@@ -57,10 +57,10 @@ object Main extends IOApp {
             TextLink.internal(Path.Root / "README.md", "Creative Scala Theme")
           )
           .withCommunity(
-            TextLink.external("https://discord.gg/rRhcFbJxVG", "Community")
+            ExternalLink("https://discord.gg/rRhcFbJxVG", "Community")
           )
           .withSource(
-            TextLink.external(
+            ExternalLink(
               "https://github.com/creativescala/creative-scala-theme",
               "Source"
             )

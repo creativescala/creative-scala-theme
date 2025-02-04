@@ -51,6 +51,13 @@ header nav#external {
 header nav#external a {
   @apply text-sm text-slate-900 hover:text-pink-800 font-sans font-semibold p-4 no-underline;
 }
+header nav#external a svg {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: sub;
+  margin-left: var(--spacing);
+}
 
 /** TOPBAR **/
 nav#topbar {
