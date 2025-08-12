@@ -92,12 +92,12 @@ nav#topbar ul li.active a {
 }
 /** MAIN **/
 main {
-  @apply max-w-8xl mx-auto py-8 min-h-screen flex;
+  @apply max-w-8xl mx-auto my-8 min-h-dvh relative flex;
 }
 
 /** SITEBAR **/
 nav#sitebar {
-  @apply hidden min-w-60 max-w-md lg:block mr-8;
+  @apply hidden min-w-60 max-w-md lg:block mr-8 py-8 relative;
 }
 nav#sitebar .nav-list li a {
   @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800;

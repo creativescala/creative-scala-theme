@@ -481,20 +481,24 @@ nav#topbar ul li.active a {
   }
 }
 main {
+  position: relative;
   margin-inline: auto;
+  margin-block: calc(var(--spacing) * 8);
   display: flex;
-  min-height: 100vh;
+  min-height: 100dvh;
   max-width: var(--container-8xl);
-  padding-block: calc(var(--spacing) * 8);
 }
 nav#sitebar {
+  position: relative;
   margin-right: calc(var(--spacing) * 8);
   display: none;
   max-width: var(--container-md);
   min-width: calc(var(--spacing) * 60);
+  padding-block: calc(var(--spacing) * 8);
   @media (width >= 64rem) {
     display: block;
   }
+  height: calc(100dvh - var(--spacing) * 8);
 }
 nav#sitebar .nav-list li a {
   display: block;
