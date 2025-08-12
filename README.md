@@ -30,4 +30,4 @@ laikaTheme := CreativeScalaTheme.empty
   .build
 ```
 
-Full documentation is in `src/main/resources/creativescala/content`.
+Full documentation is in `src/main/resources/creativescala/content`. To build the documentation call `run` from sbt. The output will be in the `target` directory.
