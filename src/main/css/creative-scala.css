@@ -64,7 +64,7 @@ nav#topbar {
   @apply lg:hidden;
 }
 div#topbar-nav {
-  @apply z-50  h-svh h-screen w-svw w-screen backdrop-blur-xs bg-transparent;
+  @apply z-50 h-svh h-screen w-svw w-screen backdrop-blur-xs bg-transparent;
 }
 div#topbar-nav-container {
   @apply h-screen flex items-center justify-center overflow-y-auto overflow-x-auto;
