@@ -13,8 +13,6 @@ ThisBuild / developers := List(
   tlGitHubDev("noelwelsh", "Noel Welsh")
 )
 
-// true by default, set to false to publish to s01.oss.sonatype.org
-ThisBuild / sonatypeCredentialHost := xerial.sbt.Sonatype.sonatypeLegacy
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
