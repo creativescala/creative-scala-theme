@@ -97,7 +97,7 @@ main {
 
 /** SITEBAR **/
 nav#sitebar {
-  @apply hidden min-w-60 max-w-md lg:block mr-8 py-8 relative;
+  @apply hidden min-w-60 max-w-md lg:block mr-8 relative;
 }
 nav#sitebar .nav-list li a {
   @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800;
