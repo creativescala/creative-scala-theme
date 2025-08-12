@@ -18,7 +18,7 @@
     --color-pink-600: oklch(0.592 0.249 0.584);
     --color-pink-800: oklch(0.459 0.187 3.815);
     --color-pink-900: oklch(0.408 0.153 2.432);
-    --color-rose-600: oklch(0.586 0.253 17.585);
+    --color-rose-400: oklch(0.712 0.194 13.428);
     --color-slate-300: oklch(0.869 0.022 252.894);
     --color-slate-800: oklch(0.279 0.041 260.031);
     --color-slate-900: oklch(0.208 0.042 265.755);
@@ -728,7 +728,7 @@ div#content pre code .number-literal, .char-literal, .boolean-literal, .string-l
   color: var(--color-sky-300);
 }
 div#content pre code .keyword {
-  color: var(--color-rose-600);
+  color: var(--color-rose-400);
 }
 div#content pre code .identifier {
   color: var(--color-pink-300);

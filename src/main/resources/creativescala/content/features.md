@@ -8,5 +8,15 @@ Here is a brief overview of the features of this template:
 
 - It provides a range of [directives](/directives/README.md) that I've found useful in documenting my projects.
 
+- It has custom syntax highlighting. Here's an example
+
+  ```scala
+  val x = 1.0 
+  
+  def double(v: Double): Double = v + v
+  
+  double(x)
+  ```
+
 
 [responsive]: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design

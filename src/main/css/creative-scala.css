@@ -245,7 +245,7 @@ div#content pre code .number-literal,
   @apply text-sky-300;
 }
 div#content pre code .keyword {
-  @apply text-rose-600;
+  @apply text-rose-400;
 }
 div#content pre code .identifier {
   @apply text-pink-300;
