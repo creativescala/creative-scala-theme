@@ -68,7 +68,7 @@
 
     <main>
       <nav id="sitebar">
-        <div class="fixed h-screen overflow-y-auto">
+        <div class="fixed h-dvh overflow-y-auto">
           @:navigationTree { entries = [ { target = "/", excludeSections = true,
           depth = 4 } ] }
         </div>
@@ -86,7 +86,7 @@
         </footer>
       </div>
       <nav id="pagebar">
-        <div class="fixed h-screen overflow-y-auto">
+        <div class="fixed h-dvh overflow-y-auto">
           <p>On This Page</p>
           @:navigationTree { entries = [ { target = "#", excludeRoot = true } ]
           }
