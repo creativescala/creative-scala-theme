@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="${?laika.site.metadata.language}">
+<html class="scroll-smooth"
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
@@ -43,20 +43,22 @@
           >
             Contents
           </button>
-          <div id="topbar-nav" popover>
-            <div id="topbar-nav-container">
+          <div id="topbar-nav" popover="auto">
+            <div id="topbar-nav-container" class="flex justify-items-center items-center h-dvh w-dvw">
               <div
-                class="p-4 mx-auto rounded-md bg-white border border-slate-900 relative"
+                class="p-4 mx-auto rounded-md bg-white border border-slate-900 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
               >
                 <button
-                  class="absolute top-4 right-4 text-slate-900 hover:text-pink-800 focus:text-pink-800"
+                  class="text-slate-900 hover:text-pink-800 focus:text-pink-800"
                   popovertarget="topbar-nav"
                   popovertargetaction="hide"
                 >
                   ✕
                 </button>
-                @:navigationTree { entries = [{ target = "/", excludeSections =
-                true, depth = 4 }]}
+                <div class="w-full">
+                  @:navigationTree { entries = [{ target = "/", excludeSections =
+                  true, depth = 4 }]}
+                </div>
               </div>
             </div>
           </div>
@@ -66,14 +68,18 @@
       </div>
     </header>
 
-    <main>
-      <nav id="sitebar">
-        <div class="absolute overflow-y-auto">
+    <main class="max-w-8xl mx-auto my-8 min-h-screen flex">
+      <!-- Left sticky table of contents -->
+      <nav
+        id="sitebar"
+        class="hidden lg:block min-w-64 max-w-md mr-8 sticky top-24 self-start flex-shrink-0"
+      >
+        <div class="max-h-[calc(100vh-6rem)] overflow-y-auto">
           @:navigationTree { entries = [ { target = "/", excludeSections = true,
           depth = 4 } ] }
         </div>
       </nav>
-      <div id="contentbar">
+      <div id="contentbar" class="mx-auto flex-1">
         <div class="max-w-prose mx-auto">
           <div id="content">${cursor.currentDocument.content}</div>
           <div class="flex flex-row justify-between">
@@ -85,8 +91,12 @@
           <span class="hover:text-pink-900">💖</span>
         </footer>
       </div>
-      <nav id="pagebar">
-        <div class="fixed h-dvh overflow-y-auto">
+      <!-- Right sticky page contents -->
+      <nav
+        id="pagebar"
+        class="hidden lg:block min-w-60 max-w-64 ml-8 sticky top-24 self-start flex-shrink-0"
+      >
+        <div class="max-h-[calc(100vh-6rem)] overflow-y-auto">
           <p>On This Page</p>
           @:navigationTree { entries = [ { target = "#", excludeRoot = true } ]
           }

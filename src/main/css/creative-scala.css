@@ -64,10 +64,9 @@ nav#topbar {
   @apply lg:hidden;
 }
 div#topbar-nav {
-  @apply z-50 h-svh h-screen w-svw w-screen backdrop-blur-xs bg-transparent;
+  @apply h-svh w-svw backdrop-blur-xs bg-transparent;
 }
 div#topbar-nav-container {
-  @apply h-screen flex items-center justify-center overflow-y-auto overflow-x-auto;
 }
 nav#topbar ul {
   @apply p-4 text-lg font-sans;
@@ -92,12 +91,10 @@ nav#topbar ul li.active a {
 }
 /** MAIN **/
 main {
-  @apply max-w-8xl mx-auto my-8 min-h-dvh relative flex;
 }
 
 /** SITEBAR **/
 nav#sitebar {
-  @apply hidden min-w-60 max-w-md lg:block mr-8 relative;
 }
 nav#sitebar .nav-list li a {
   @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800;
@@ -120,7 +117,6 @@ nav#sitebar .nav-list li.active a {
 
 /** PAGEBAR **/
 nav#pagebar {
-  @apply hidden min-w-60 lg:block ml-8;
 }
 nav#pagebar p {
   @apply text-sm text-pink-800 font-sans font-semibold;
@@ -131,7 +127,7 @@ nav#pagebar li a {
 
 /** CONTENTBAR **/
 div#contentbar {
-  @apply mx-8 w-full overflow-y-auto;
+  @apply mx-8 flex-1 max-w-prose mx-auto overflow-y-auto;
 }
 
 /** PAGENAV **/
