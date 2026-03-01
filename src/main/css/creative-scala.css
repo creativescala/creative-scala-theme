@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --grid-template-columns-sitebar-content: 20rem auto;
   --grid-template-columns-content-navbar: 70ch auto;
@@ -26,12 +29,12 @@
 }
 
 body {
-  @apply text-slate-900 text-lg font-serif bg-white;
+  @apply text-slate-900 text-lg font-serif bg-white dark:bg-slate-900 dark:text-slate-100;
 }
 
 /** HEADER **/
 header {
-  @apply w-full z-50 top-0 bg-white sticky border-b border-pink-900/10 p-4;
+  @apply w-full z-50 top-0 bg-white dark:bg-slate-900 sticky border-b border-pink-900/10 dark:border-slate-700 p-4;
 }
 
 header div#topbar {
@@ -42,14 +45,14 @@ header nav#home {
   @apply inline-block;
 }
 header nav#home a {
-  @apply text-sm text-pink-800 font-sans font-semibold py-4 hover:text-pink-600 no-underline;
+  @apply text-sm text-pink-800 dark:text-pink-400 font-sans font-semibold py-4 hover:text-pink-600 dark:hover:text-pink-300 no-underline;
 }
 
 header nav#external {
   @apply inline-block;
 }
 header nav#external a {
-  @apply text-sm text-slate-900 hover:text-pink-800 font-sans font-semibold p-4 no-underline;
+  @apply text-sm text-slate-900 dark:text-slate-100 hover:text-pink-800 dark:hover:text-pink-400 font-sans font-semibold p-4 no-underline;
 }
 header nav#external a svg {
   width: 16px;
@@ -66,13 +69,20 @@ nav#topbar {
 div#topbar-nav {
   @apply h-svh w-svw backdrop-blur-xs bg-transparent;
 }
+/* Mobile popover nav list dark mode text colors */
+div#topbar-nav .nav-list li a {
+  @apply text-slate-900 dark:text-slate-100;
+}
+div#topbar-nav .nav-list li.active a {
+  @apply text-pink-800 dark:text-pink-400;
+}
 div#topbar-nav-container {
 }
 nav#topbar ul {
-  @apply p-4 text-lg font-sans;
+  @apply p-4 text-lg font-sans text-slate-900 dark:text-slate-100;
 }
 nav#topbar ul li a {
-  @apply w-full p-4 block focus:no-underline rounded-md focus:ring-1 focus:ring-pink-800 focus:text-pink-800 hover:ring-1 hover:ring-pink-800 hover:text-pink-800;
+  @apply w-full p-4 block text-slate-900 dark:text-slate-100 focus:no-underline rounded-md focus:ring-1 focus:ring-pink-800 dark:focus:ring-pink-400 focus:text-pink-800 dark:focus:text-pink-400 hover:ring-1 hover:ring-pink-800 dark:hover:ring-pink-400 hover:text-pink-800 dark:hover:text-pink-400;
 }
 nav#topbar ul li.level1 a {
   @apply font-semibold;
@@ -87,7 +97,7 @@ nav#topbar ul li.level4 a {
   @apply pl-12 mt-1;
 }
 nav#topbar ul li.active a {
-  @apply text-pink-800 hover:ring-0 focus:ring-0;
+  @apply text-pink-800 dark:text-pink-400 hover:ring-0 focus:ring-0;
 }
 /** MAIN **/
 main {
@@ -97,7 +107,7 @@ main {
 nav#sitebar {
 }
 nav#sitebar .nav-list li a {
-  @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800;
+  @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800 dark:hover:text-pink-400;
 }
 nav#sitebar .nav-list li.level1 a {
   @apply font-semibold;
@@ -112,17 +122,17 @@ nav#sitebar .nav-list li.level4 a {
   @apply pl-12 mt-1;
 }
 nav#sitebar .nav-list li.active a {
-  @apply bg-pink-300 hover:bg-pink-300 text-pink-800 rounded-e-full;
+  @apply bg-pink-300 dark:bg-pink-900 hover:bg-pink-300 dark:hover:bg-pink-900 text-pink-800 dark:text-pink-200 rounded-e-full;
 }
 
 /** PAGEBAR **/
 nav#pagebar {
 }
 nav#pagebar p {
-  @apply text-sm text-pink-800 font-sans font-semibold;
+  @apply text-sm text-pink-800 dark:text-pink-400 font-sans font-semibold;
 }
 nav#pagebar li a {
-  @apply text-sm font-sans no-underline hover:text-pink-800;
+  @apply text-sm font-sans no-underline hover:text-pink-800 dark:hover:text-pink-400;
 }
 
 /** CONTENTBAR **/
@@ -132,7 +142,7 @@ div#contentbar {
 
 /** PAGENAV **/
 a.pagenav {
-  @apply text-sm font-sans no-underline hover:no-underline hover:text-pink-800;
+  @apply text-sm font-sans no-underline hover:no-underline hover:text-pink-800 dark:hover:text-pink-400;
 }
 
 /** CONTENT **/
@@ -183,14 +193,14 @@ div#content div.callout {
   @apply my-4 p-4;
 }
 div#content div.info {
-  @apply bg-blue-200;
+  @apply bg-blue-200 dark:bg-blue-900/30;
 }
 div#content div.warn {
-  @apply bg-amber-200;
+  @apply bg-amber-200 dark:bg-amber-900/30;
 }
 div#content details summary {
   cursor: pointer;
-  @apply text-yellow-800;
+  @apply text-yellow-800 dark:text-yellow-400;
 }
 div#content details summary > * {
   display: inline;
@@ -228,7 +238,7 @@ div#content .solution details .solution-body pre {
 
 /** SYNTAX HIGHLIGHTING **/
 div#content pre {
-  @apply mb-4 px-4 py-2 bg-slate-800 text-slate-300 rounded-md overflow-x-auto;
+  @apply mb-4 px-4 py-2 bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-200 rounded-md overflow-x-auto;
 }
 div#content code {
   @apply text-sm;
@@ -257,5 +267,5 @@ div#content pre code .comment {
 }
 
 footer {
-  @apply mt-4 py-4 border-t border-pink-900/10 text-pink-900/60 text-center text-sm font-sans;
+  @apply mt-4 py-4 border-t border-pink-900/10 dark:border-slate-700 text-pink-900/60 dark:text-slate-400 text-center text-sm font-sans;
 }

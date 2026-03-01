@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="scroll-smooth"
+<html class="scroll-smooth">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
@@ -35,10 +35,10 @@
 
   <body>
     <header>
-      <div id="topbar">
-        <nav id="topbar">
+      <div id="topbar" class="flex flex-row items-center justify-between">
+        <nav id="topbar" class="flex flex-row items-center gap-2">
           <button
-            class="text-sm text-pink-800 font-sans font-semibold hover:text-pink-600 focus:text-pink-600"
+            class="text-sm text-pink-800 dark:text-pink-400 font-sans font-semibold hover:text-pink-600 dark:hover:text-pink-300 focus:text-pink-600 dark:focus:text-pink-300"
             popovertarget="topbar-nav"
           >
             Contents
@@ -46,10 +46,10 @@
           <div id="topbar-nav" popover="auto">
             <div id="topbar-nav-container" class="flex justify-items-center items-center h-dvh w-dvw">
               <div
-                class="p-4 mx-auto rounded-md bg-white border border-slate-900 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
+                class="p-4 mx-auto rounded-md bg-white dark:bg-slate-900 border border-slate-900 dark:border-slate-700 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
               >
                 <button
-                  class="text-slate-900 hover:text-pink-800 focus:text-pink-800"
+                  class="text-slate-900 dark:text-slate-100 hover:text-pink-800 dark:hover:text-pink-400 focus:text-pink-800 dark:focus:text-pink-400"
                   popovertarget="topbar-nav"
                   popovertargetaction="hide"
                 >
@@ -63,6 +63,18 @@
             </div>
           </div>
         </nav>
+        <!-- Dark mode toggle button - always visible -->
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle dark mode"
+          onclick="toggleTheme()"
+          class="px-2 py-1 rounded text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+          style="font-size:1.1em;"
+        >
+          <span class="inline dark:hidden" aria-hidden="true">🌙</span>
+          <span class="hidden dark:inline" aria-hidden="true">☀️</span>
+        </button>
         <nav id="home">${?cst.home}</nav>
         <nav id="external">${cst.community} ${cst.api} ${cst.source}</nav>
       </div>
@@ -88,7 +100,7 @@
         </div>
         <footer>
           Copyright &copy; Noel Welsh. Built with
-          <span class="hover:text-pink-900">💖</span>
+          <span class="hover:text-pink-900 dark:hover:text-pink-400">💖</span>
         </footer>
       </div>
       <!-- Right sticky page contents -->
