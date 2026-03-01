@@ -38,7 +38,7 @@ header {
 }
 
 header div#topbar {
-  @apply max-w-8xl mx-auto flex justify-between;
+  @apply max-w-8xl mx-auto flex flex-wrap items-center justify-between gap-2 sm:gap-4;
 }
 
 header nav#home {
@@ -60,6 +60,25 @@ header nav#external a svg {
   display: inline-block;
   vertical-align: sub;
   margin-left: var(--spacing);
+}
+
+/** DARK MODE TOGGLE **/
+#theme-toggle {
+  @apply flex-shrink-0 p-2 sm:px-2 sm:py-1 rounded text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer;
+  font-size: 1rem;
+  line-height: 1;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  #theme-toggle {
+    min-width: auto;
+    min-height: auto;
+    font-size: 1.1em;
+  }
 }
 
 /** TOPBAR **/

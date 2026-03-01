@@ -296,9 +296,6 @@
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
-  .cursor-pointer {
-    cursor: pointer;
-  }
   .flex-col {
     flex-direction: column;
   }
@@ -332,9 +329,6 @@
   .scroll-smooth {
     scroll-behavior: smooth;
   }
-  .rounded {
-    border-radius: 0.25rem;
-  }
   .rounded-md {
     border-radius: var(--radius-md);
   }
@@ -342,26 +336,14 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-slate-300 {
-    border-color: var(--color-slate-300);
-  }
   .border-slate-900 {
     border-color: var(--color-slate-900);
-  }
-  .bg-slate-100 {
-    background-color: var(--color-slate-100);
   }
   .bg-white {
     background-color: var(--color-white);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
-  }
-  .px-2 {
-    padding-inline: calc(var(--spacing) * 2);
-  }
-  .py-1 {
-    padding-block: calc(var(--spacing) * 1);
   }
   .font-sans {
     font-family: var(--font-sans);
@@ -379,18 +361,6 @@
   }
   .text-slate-900 {
     color: var(--color-slate-900);
-  }
-  .transition-colors {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .hover\:bg-slate-200 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-slate-200);
-      }
-    }
   }
   .hover\:text-pink-600 {
     &:hover {
@@ -443,11 +413,6 @@
       border-color: var(--color-slate-700);
     }
   }
-  .dark\:bg-slate-800 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-slate-800);
-    }
-  }
   .dark\:bg-slate-900 {
     &:where(.dark, .dark *) {
       background-color: var(--color-slate-900);
@@ -461,15 +426,6 @@
   .dark\:text-slate-100 {
     &:where(.dark, .dark *) {
       color: var(--color-slate-100);
-    }
-  }
-  .dark\:hover\:bg-slate-700 {
-    &:where(.dark, .dark *) {
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-slate-700);
-        }
-      }
     }
   }
   .dark\:hover\:text-pink-300 {
@@ -547,7 +503,13 @@ header div#topbar {
   margin-inline: auto;
   display: flex;
   max-width: var(--container-8xl);
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
+  gap: calc(var(--spacing) * 2);
+  @media (width >= 40rem) {
+    gap: calc(var(--spacing) * 4);
+  }
 }
 header nav#home {
   display: inline-block;
@@ -611,6 +573,61 @@ header nav#external a svg {
   display: inline-block;
   vertical-align: sub;
   margin-left: var(--spacing);
+}
+#theme-toggle {
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: var(--color-slate-300);
+  background-color: var(--color-slate-100);
+  padding: calc(var(--spacing) * 2);
+  color: var(--color-slate-900);
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-slate-200);
+    }
+  }
+  @media (width >= 40rem) {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  @media (width >= 40rem) {
+    padding-block: calc(var(--spacing) * 1);
+  }
+  &:where(.dark, .dark *) {
+    border-color: var(--color-slate-700);
+  }
+  &:where(.dark, .dark *) {
+    background-color: var(--color-slate-800);
+  }
+  &:where(.dark, .dark *) {
+    color: var(--color-slate-100);
+  }
+  &:where(.dark, .dark *) {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-slate-700);
+      }
+    }
+  }
+  font-size: 1rem;
+  line-height: 1;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  #theme-toggle {
+    min-width: auto;
+    min-height: auto;
+    font-size: 1.1em;
+  }
 }
 nav#topbar {
   @media (width >= 64rem) {
