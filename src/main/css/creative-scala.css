@@ -10,6 +10,25 @@
   --container-8xl: 90rem;
 }
 
+/* Dark mode color overrides */
+@layer theme {
+  .dark {
+    --color-white: oklch(0.15 0.01 265.755);
+    --color-gray-50: oklch(0.22 0.015 265.755);
+    --color-gray-200: oklch(0.35 0.02 260.031);
+    --color-slate-300: oklch(0.75 0.02 252.894);
+    --color-slate-800: oklch(0.18 0.025 260.031);
+    --color-slate-900: oklch(0.88 0.015 252.894);
+    --color-blue-50: oklch(0.25 0.03 254.604);
+    --color-blue-200: oklch(0.35 0.08 254.128);
+    --color-amber-200: oklch(0.45 0.1 85.746);
+    --color-pink-300: oklch(0.7 0.14 346.018);
+    --color-pink-600: oklch(0.65 0.22 0.584);
+    --color-pink-800: oklch(0.75 0.18 3.815);
+    --color-pink-900: oklch(0.8 0.14 2.432);
+  }
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -49,7 +68,7 @@ header nav#home a {
 }
 
 header nav#external {
-  @apply inline-block;
+  @apply hidden lg:inline-block;
 }
 header nav#external a {
   @apply text-sm text-slate-900 dark:text-slate-100 hover:text-pink-800 dark:hover:text-pink-400 font-sans font-semibold p-4 no-underline;
@@ -287,4 +306,41 @@ div#content pre code .comment {
 
 footer {
   @apply mt-4 py-4 border-t border-pink-900/10 dark:border-slate-700 text-pink-900/60 dark:text-slate-400 text-center text-sm font-sans;
+}
+
+/** THEME TOGGLE SWITCH **/
+.toggle-button {
+  border: 2px solid #000;
+  background-color: #fff;
+  border-radius: 30px;
+  width: 48px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.toggle-button .toggle-circle {
+  background-color: #000;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s, background-color 0.3s;
+}
+
+.toggle-button.active {
+  background-color: #262626;
+  border-color: #fff;
+}
+
+.toggle-button.active .toggle-circle {
+  left: 26px;
+  background-color: #fff;
 }

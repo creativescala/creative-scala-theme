@@ -56,12 +56,12 @@ final case class CreativeScalaTheme(
   val cssPath = Path.Root / "css" / "creative-scala.css"
   val tocJsPath = Path.Root / "js" / "toc.js"
   val solutionJsPath = Path.Root / "js" / "solution.js"
-  val darkmodeJsPath = Path.Root / "js" / "darkmode.js"
+  val themeToggleJsPath = Path.Root / "js" / "theme-toggle.js"
 
   def build: ThemeProvider =
     new ThemeProvider {
       val directives = new CreativeScalaDirectives(
-        darkmodeJsPath +: solutionJsPath +: jsPaths,
+        solutionJsPath +: jsPaths,
         cssPath +: cssPaths
       )
 
@@ -88,12 +88,12 @@ final case class CreativeScalaTheme(
                 cssPath
               )
               .addClassLoaderResource(
-                "creativescala/js/darkmode.js",
-                darkmodeJsPath
-              )
-              .addClassLoaderResource(
                 "creativescala/js/solution.js",
                 solutionJsPath
+              )
+              .addClassLoaderResource(
+                "creativescala/js/theme-toggle.js",
+                themeToggleJsPath
               )
           )
           .build

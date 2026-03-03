@@ -28,6 +28,7 @@
     --color-slate-200: oklch(0.929 0.013 255.508);
     --color-slate-300: oklch(0.869 0.022 252.894);
     --color-slate-400: oklch(0.704 0.04 256.788);
+    --color-slate-600: oklch(0.446 0.043 257.281);
     --color-slate-700: oklch(0.372 0.044 257.287);
     --color-slate-800: oklch(0.279 0.041 260.031);
     --color-slate-900: oklch(0.208 0.042 265.755);
@@ -212,9 +213,6 @@
   }
 }
 @layer utilities {
-  .visible {
-    visibility: visible;
-  }
   .sticky {
     position: sticky;
   }
@@ -241,9 +239,6 @@
   }
   .hidden {
     display: none;
-  }
-  .inline {
-    display: inline;
   }
   .table {
     display: table;
@@ -313,9 +308,6 @@
   }
   .justify-items-center {
     justify-items: center;
-  }
-  .gap-2 {
-    gap: calc(var(--spacing) * 2);
   }
   .self-start {
     align-self: flex-start;
@@ -398,67 +390,37 @@
       display: block;
     }
   }
-  .dark\:hidden {
+  .dark\:border-slate-600 {
     &:where(.dark, .dark *) {
-      display: none;
+      border-color: var(--color-slate-600);
     }
   }
-  .dark\:inline {
+  .dark\:bg-slate-800 {
     &:where(.dark, .dark *) {
-      display: inline;
+      background-color: var(--color-slate-800);
     }
   }
-  .dark\:border-slate-700 {
+  .dark\:text-slate-200 {
     &:where(.dark, .dark *) {
-      border-color: var(--color-slate-700);
+      color: var(--color-slate-200);
     }
   }
-  .dark\:bg-slate-900 {
-    &:where(.dark, .dark *) {
-      background-color: var(--color-slate-900);
-    }
-  }
-  .dark\:text-pink-400 {
-    &:where(.dark, .dark *) {
-      color: var(--color-pink-400);
-    }
-  }
-  .dark\:text-slate-100 {
-    &:where(.dark, .dark *) {
-      color: var(--color-slate-100);
-    }
-  }
-  .dark\:hover\:text-pink-300 {
-    &:where(.dark, .dark *) {
-      &:hover {
-        @media (hover: hover) {
-          color: var(--color-pink-300);
-        }
-      }
-    }
-  }
-  .dark\:hover\:text-pink-400 {
-    &:where(.dark, .dark *) {
-      &:hover {
-        @media (hover: hover) {
-          color: var(--color-pink-400);
-        }
-      }
-    }
-  }
-  .dark\:focus\:text-pink-300 {
-    &:where(.dark, .dark *) {
-      &:focus {
-        color: var(--color-pink-300);
-      }
-    }
-  }
-  .dark\:focus\:text-pink-400 {
-    &:where(.dark, .dark *) {
-      &:focus {
-        color: var(--color-pink-400);
-      }
-    }
+}
+@layer theme {
+  .dark {
+    --color-white: oklch(0.15 0.01 265.755);
+    --color-gray-50: oklch(0.22 0.015 265.755);
+    --color-gray-200: oklch(0.35 0.02 260.031);
+    --color-slate-300: oklch(0.75 0.02 252.894);
+    --color-slate-800: oklch(0.18 0.025 260.031);
+    --color-slate-900: oklch(0.88 0.015 252.894);
+    --color-blue-50: oklch(0.25 0.03 254.604);
+    --color-blue-200: oklch(0.35 0.08 254.128);
+    --color-amber-200: oklch(0.45 0.1 85.746);
+    --color-pink-300: oklch(0.7 0.14 346.018);
+    --color-pink-600: oklch(0.65 0.22 0.584);
+    --color-pink-800: oklch(0.75 0.18 3.815);
+    --color-pink-900: oklch(0.8 0.14 2.432);
   }
 }
 @layer base {
@@ -540,7 +502,10 @@ header nav#home a {
   }
 }
 header nav#external {
-  display: inline-block;
+  display: none;
+  @media (width >= 64rem) {
+    display: inline-block;
+  }
 }
 header nav#external a {
   padding: calc(var(--spacing) * 4);
@@ -1081,6 +1046,38 @@ footer {
   &:where(.dark, .dark *) {
     color: var(--color-slate-400);
   }
+}
+.toggle-button {
+  border: 2px solid #000;
+  background-color: #fff;
+  border-radius: 30px;
+  width: 48px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.toggle-button .toggle-circle {
+  background-color: #000;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s, background-color 0.3s;
+}
+.toggle-button.active {
+  background-color: #262626;
+  border-color: #fff;
+}
+.toggle-button.active .toggle-circle {
+  left: 26px;
+  background-color: #fff;
 }
 @property --tw-rotate-x {
   syntax: "*";

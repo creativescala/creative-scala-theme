@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="scroll-smooth">
+<html class="scroll-smooth"
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8" />
@@ -28,6 +28,7 @@
       type="text/css"
     />
     @:includeCss @:includeJs
+    <script src="/js/theme-toggle.js"></script>
     <script>
       /* for avoiding page load transitions */
     </script>
@@ -35,27 +36,35 @@
 
   <body>
     <header>
-      <div id="topbar" class="flex flex-row items-center justify-between">
-        <nav id="topbar" class="flex flex-row items-center gap-2">
+      <div id="topbar">
+        <nav id="topbar">
           <button
-            class="text-sm text-pink-800 dark:text-pink-400 font-sans font-semibold hover:text-pink-600 dark:hover:text-pink-300 focus:text-pink-600 dark:focus:text-pink-300"
+            class="text-sm text-pink-800 font-sans font-semibold hover:text-pink-600 focus:text-pink-600"
             popovertarget="topbar-nav"
           >
             Contents
           </button>
+          <button
+            class="toggle-button"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark mode"
+            style="margin-left: 1rem;"
+          >
+            <span class="toggle-circle"></span>
+          </button>
           <div id="topbar-nav" popover="auto">
             <div id="topbar-nav-container" class="flex justify-items-center items-center h-dvh w-dvw">
               <div
-                class="p-4 mx-auto rounded-md bg-white dark:bg-slate-900 border border-slate-900 dark:border-slate-700 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
+                class="p-4 mx-auto rounded-md bg-white dark:bg-slate-800 border border-slate-900 dark:border-slate-600 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
               >
                 <button
-                  class="text-slate-900 dark:text-slate-100 hover:text-pink-800 dark:hover:text-pink-400 focus:text-pink-800 dark:focus:text-pink-400"
+                  class="text-slate-900 dark:text-slate-200 hover:text-pink-800 focus:text-pink-800"
                   popovertarget="topbar-nav"
                   popovertargetaction="hide"
                 >
                   ✕
                 </button>
-                <div class="w-full">
+                <div class="w-full text-slate-900 dark:text-slate-200">
                   @:navigationTree { entries = [{ target = "/", excludeSections =
                   true, depth = 4 }]}
                 </div>
@@ -63,18 +72,17 @@
             </div>
           </div>
         </nav>
-        <!-- Dark mode toggle button - always visible -->
-        <button
-          id="theme-toggle"
-          type="button"
-          aria-label="Toggle dark mode"
-          onclick="toggleTheme()"
-        >
-          <span class="inline dark:hidden" aria-hidden="true">🌙</span>
-          <span class="hidden dark:inline" aria-hidden="true">☀️</span>
-        </button>
         <nav id="home">${?cst.home}</nav>
-        <nav id="external">${cst.community} ${cst.api} ${cst.source}</nav>
+        <nav id="external">
+          ${cst.community} ${cst.api} ${cst.source}
+          <button
+            class="toggle-button"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark mode"
+          >
+            <span class="toggle-circle"></span>
+          </button>
+        </nav>
       </div>
     </header>
 
@@ -98,7 +106,7 @@
         </div>
         <footer>
           Copyright &copy; Noel Welsh. Built with
-          <span class="hover:text-pink-900 dark:hover:text-pink-400">💖</span>
+          <span class="hover:text-pink-900">💖</span>
         </footer>
       </div>
       <!-- Right sticky page contents -->
