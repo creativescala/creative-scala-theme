@@ -10,25 +10,6 @@
   --container-8xl: 90rem;
 }
 
-/* Dark mode color overrides */
-@layer theme {
-  .dark {
-    --color-white: oklch(0.15 0.01 265.755);
-    --color-gray-50: oklch(0.22 0.015 265.755);
-    --color-gray-200: oklch(0.35 0.02 260.031);
-    --color-slate-300: oklch(0.75 0.02 252.894);
-    --color-slate-800: oklch(0.18 0.025 260.031);
-    --color-slate-900: oklch(0.88 0.015 252.894);
-    --color-blue-50: oklch(0.25 0.03 254.604);
-    --color-blue-200: oklch(0.35 0.08 254.128);
-    --color-amber-200: oklch(0.45 0.1 85.746);
-    --color-pink-300: oklch(0.7 0.14 346.018);
-    --color-pink-600: oklch(0.65 0.22 0.584);
-    --color-pink-800: oklch(0.75 0.18 3.815);
-    --color-pink-900: oklch(0.8 0.14 2.432);
-  }
-}
-
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -310,8 +291,7 @@ footer {
 
 /** THEME TOGGLE SWITCH **/
 .toggle-button {
-  border: 2px solid #000;
-  background-color: #fff;
+  @apply border-2 border-black bg-white;
   border-radius: 30px;
   width: 48px;
   height: 24px;
@@ -325,7 +305,7 @@ footer {
 }
 
 .toggle-button .toggle-circle {
-  background-color: #000;
+  @apply bg-black;
   border-radius: 50%;
   width: 16px;
   height: 16px;
@@ -336,11 +316,10 @@ footer {
 }
 
 .toggle-button.active {
-  background-color: #262626;
-  border-color: #fff;
+  @apply bg-neutral-800 border-white;
 }
 
 .toggle-button.active .toggle-circle {
   left: 26px;
-  background-color: #fff;
+  @apply bg-white;
 }

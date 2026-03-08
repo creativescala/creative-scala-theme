@@ -144,5 +144,8 @@ project/metals.sbt
 
 .sbt-hydra-history
 
+# VS Code
+.vscode/
+
 # NPM
 node_modules
