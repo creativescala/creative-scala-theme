@@ -61,7 +61,7 @@ final case class CreativeScalaTheme(
   def build: ThemeProvider =
     new ThemeProvider {
       val directives = new CreativeScalaDirectives(
-        solutionJsPath +: jsPaths,
+        themeToggleJsPath +: solutionJsPath +: jsPaths,
         cssPath +: cssPaths
       )
 
