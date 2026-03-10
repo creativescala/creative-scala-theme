@@ -26,263 +26,398 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  :root {
+    /* The color for normal text and other elements that are specially styled */
+    --default-color: theme(--color-slate-900);
+    /* The normal background color */
+    --default-bg: theme(--color-white);
+    /* The color for accented elements, such as some navigation items */
+    --accent-color: theme(--color-pink-800);
+    /* The color for elements that have an accented background (e.g. selected table of contents item) */
+    --accent-bg: theme(--color-pink-300);
+    /* The color for hovered accented elements */
+    --accent-hover-color: theme(--color-pink-600);
+  }
+
+  :root.dark {
+    --default-color: theme(--color-slate-100);
+    --default-bg: theme(--color-slate-900);
+    --accent-color: theme(--color-pink-400);
+    --accent-bg: theme(--color-pink-900);
+    --accent-hover-color: theme(--color-pink-300);
+  }
 }
 
 body {
-  @apply text-slate-900 text-lg font-serif bg-white dark:bg-slate-900 dark:text-slate-100;
+  @apply text-lg font-serif;
+  color: var(--default-color);
+  background-color: var(--default-bg);
 }
 
 /** HEADER **/
 header {
-  @apply w-full z-50 top-0 bg-white dark:bg-slate-900 sticky border-b border-pink-900/10 dark:border-slate-700 p-4;
-}
+  @apply w-full z-50 top-0 sticky border-b border-pink-900/10 dark:border-slate-700 p-4;
+  background-color: var(--default-bg);
 
-header div#topbar {
-  @apply max-w-8xl mx-auto flex flex-wrap items-center justify-between gap-2 sm:gap-4;
-}
+  div#topbar {
+    @apply max-w-8xl mx-auto flex flex-wrap items-center justify-between gap-2 sm:gap-4;
 
-header nav#home {
-  @apply inline-block;
-}
-header nav#home a {
-  @apply text-sm text-pink-800 dark:text-pink-400 font-sans font-semibold py-4 hover:text-pink-600 dark:hover:text-pink-300 no-underline;
-}
+    /* Pop-up table of contents on small screens */
+    nav#sm-contents {
+      /* Only display on small screens */
+      @apply lg:hidden;
 
-header nav#external {
-  @apply hidden lg:inline-block;
-}
-header nav#external a {
-  @apply text-sm text-slate-900 dark:text-slate-100 hover:text-pink-800 dark:hover:text-pink-400 font-sans font-semibold p-4 no-underline;
-}
-header nav#external a svg {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  vertical-align: sub;
-  margin-left: var(--spacing);
-}
+      /* The button that toggles the small screen table of contents */
+      button#toc-toggle {
+        @apply cursor-pointer;
+        color: var(--accent-color);
 
-/** DARK MODE TOGGLE **/
-#theme-toggle {
-  @apply flex-shrink-0 p-2 sm:px-2 sm:py-1 rounded text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer;
-  font-size: 1rem;
-  line-height: 1;
-  min-width: 40px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (min-width: 640px) {
-  #theme-toggle {
-    min-width: auto;
-    min-height: auto;
-    font-size: 1.1em;
+        &:hover,
+        &:focus-visible {
+          color: var(--accent-hover-color);
+        }
+      }
+
+      /** The actual popover table of contents **/
+      div#sm-toc {
+        @apply h-svh w-svw backdrop-blur-xs bg-transparent;
+
+        #sm-toc-container {
+          @apply flex justify-items-center items-center h-dvh w-dvw;
+
+          div#sm-toc-box {
+            @apply p-4 mx-auto rounded-md border border-slate-900 dark:border-slate-600 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end;
+            color: var(--default-color);
+            background-color: var(--default-bg);
+
+            /* Button to close the popover */
+            button#toc-close {
+              @apply cursor-pointer;
+
+              svg {
+                &:hover,
+                &:focus-visible {
+                  stroke: var(--accent-color);
+                }
+              }
+            }
+          }
+        }
+
+        /* Mobile popover nav list colors */
+        .nav-list li {
+          a {
+            color: var(--default-color);
+          }
+
+          &.active a {
+            color: var(--accent-color);
+          }
+        }
+
+        ul {
+          @apply p-4 text-lg font-sans;
+          color: var(--default-color);
+
+          li {
+            a {
+              @apply w-full p-4 block focus-visible:no-underline rounded-md focus-visible:ring-1 focus-visible:ring-pink-800 dark:focus-visible:ring-pink-400 hover:ring-1 hover:ring-pink-800 dark:hover:ring-pink-400;
+              color: var(--default-color);
+
+              &:hover,
+              &:focus-visible {
+                color: var(--accent-color);
+              }
+            }
+
+            &.level1 a {
+              @apply font-semibold;
+            }
+            &.level2 a {
+              @apply font-semibold mt-1;
+            }
+            &.level3 a {
+              @apply pl-8 mt-1;
+            }
+            &.level4 a {
+              @apply pl-12 mt-1;
+            }
+
+            &.active a {
+              @apply hover:ring-0 focus:ring-0;
+              color: var(--accent-color);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nav#home {
+    @apply inline-block;
+
+    a {
+      @apply text-sm font-sans font-semibold py-4 no-underline;
+      color: var(--accent-color);
+
+      &:hover {
+        color: var(--accent-hover-color);
+      }
+    }
+  }
+
+  nav#external {
+    @apply hidden lg:inline-block;
+
+    a {
+      @apply text-sm font-sans font-semibold p-4 no-underline;
+      color: var(--default-color);
+
+      &:hover {
+        color: var(--accent-color);
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        vertical-align: sub;
+        margin-left: var(--spacing);
+      }
+    }
   }
 }
 
-/** TOPBAR **/
-nav#topbar {
-  @apply lg:hidden;
-}
-div#topbar-nav {
-  @apply h-svh w-svw backdrop-blur-xs bg-transparent;
-}
-/* Mobile popover nav list dark mode text colors */
-div#topbar-nav .nav-list li a {
-  @apply text-slate-900 dark:text-slate-100;
-}
-div#topbar-nav .nav-list li.active a {
-  @apply text-pink-800 dark:text-pink-400;
-}
-div#topbar-nav-container {
-}
-nav#topbar ul {
-  @apply p-4 text-lg font-sans text-slate-900 dark:text-slate-100;
-}
-nav#topbar ul li a {
-  @apply w-full p-4 block text-slate-900 dark:text-slate-100 focus:no-underline rounded-md focus:ring-1 focus:ring-pink-800 dark:focus:ring-pink-400 focus:text-pink-800 dark:focus:text-pink-400 hover:ring-1 hover:ring-pink-800 dark:hover:ring-pink-400 hover:text-pink-800 dark:hover:text-pink-400;
-}
-nav#topbar ul li.level1 a {
-  @apply font-semibold;
-}
-nav#topbar ul li.level2 a {
-  @apply font-semibold mt-1;
-}
-nav#topbar ul li.level3 a {
-  @apply pl-8 mt-1;
-}
-nav#topbar ul li.level4 a {
-  @apply pl-12 mt-1;
-}
-nav#topbar ul li.active a {
-  @apply text-pink-800 dark:text-pink-400 hover:ring-0 focus:ring-0;
-}
 /** MAIN **/
 main {
+  @apply max-w-8xl mx-auto my-8 min-h-screen flex;
 }
 
-/** SITEBAR **/
-nav#sitebar {
-}
-nav#sitebar .nav-list li a {
-  @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline hover:text-pink-800 dark:hover:text-pink-400;
-}
-nav#sitebar .nav-list li.level1 a {
-  @apply font-semibold;
-}
-nav#sitebar .nav-list li.level2 a {
-  @apply font-semibold mt-1;
-}
-nav#sitebar .nav-list li.level3 a {
-  @apply pl-8 mt-1;
-}
-nav#sitebar .nav-list li.level4 a {
-  @apply pl-12 mt-1;
-}
-nav#sitebar .nav-list li.active a {
-  @apply bg-pink-300 dark:bg-pink-900 hover:bg-pink-300 dark:hover:bg-pink-900 text-pink-800 dark:text-pink-200 rounded-e-full;
+/** Normal table of contents, sticky on left **/
+nav#contents {
+  @apply hidden lg:block min-w-64 max-w-md mr-8 sticky top-24 self-start flex-shrink-0;
+
+  > div {
+    @apply max-h-[calc(100vh-6rem)] overflow-y-auto;
+  }
+
+  .nav-list li {
+    a {
+      @apply text-sm font-sans w-full block px-4 py-1 hover:no-underline;
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+
+    &.level1 a {
+      @apply font-semibold;
+    }
+    &.level2 a {
+      @apply font-semibold mt-1;
+    }
+    &.level3 a {
+      @apply pl-8 mt-1;
+    }
+    &.level4 a {
+      @apply pl-12 mt-1;
+    }
+
+    &.active a {
+      @apply rounded-e-full;
+      color: var(--accent-color);
+      background-color: var(--accent-bg);
+
+      &:hover {
+        background-color: var(--accent-bg);
+      }
+    }
+  }
 }
 
 /** PAGEBAR **/
 nav#pagebar {
-}
-nav#pagebar p {
-  @apply text-sm text-pink-800 dark:text-pink-400 font-sans font-semibold;
-}
-nav#pagebar li a {
-  @apply text-sm font-sans no-underline hover:text-pink-800 dark:hover:text-pink-400;
+  @apply hidden lg:block min-w-60 max-w-64 ml-8 sticky top-24 self-start flex-shrink-0;
+
+  > div {
+    @apply max-h-[calc(100vh-6rem)] overflow-y-auto;
+  }
+
+  p {
+    @apply text-sm font-sans font-semibold;
+    color: var(--accent-color);
+  }
+
+  li a {
+    @apply text-sm font-sans no-underline;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
 }
 
 /** CONTENTBAR **/
 div#contentbar {
-  @apply mx-8 flex-1 max-w-prose mx-auto overflow-y-auto;
+  @apply flex-1 mx-auto overflow-y-auto;
+}
+
+div#content-inner {
+  @apply max-w-3xl mx-auto;
 }
 
 /** PAGENAV **/
+div#pagenav-wrapper {
+  @apply flex flex-row justify-between;
+}
+
 a.pagenav {
-  @apply text-sm font-sans no-underline hover:no-underline hover:text-pink-800 dark:hover:text-pink-400;
+  @apply text-sm font-sans no-underline hover:no-underline;
+
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 /** CONTENT **/
-div#content h1,
-h2,
-h3,
-h4,
-h5 {
-  @apply font-sans font-semibold tracking-tight;
-}
-div#content h1 {
-  @apply text-4xl mb-9;
-}
-div#content h2 {
-  @apply text-2xl mt-6 mb-4;
-}
-div#content h3 {
-  @apply text-xl mt-4 mb-2;
-}
-div#content h4 {
-  @apply text-lg mt-4 mb-2;
-}
-div#content h5 {
-  @apply text-lg mt-4 mb-2;
-}
-div#content p {
-  @apply mb-4;
-}
-div#content a {
-  @apply underline decoration-dotted decoration-1 hover:decoration-solid;
-}
-div#content ol.arabic {
-  @apply list-decimal list-outside pl-4 mb-4;
-}
-div#content ul {
-  @apply list-disc list-outside pl-4 mb-4;
-}
-div#content table.footnote tbody tr td {
-  @apply pr-4 text-sm;
-}
-div#content div.doodle {
-  @apply my-4 mx-auto;
-}
-div#content p img {
-  @apply my-4 mx-auto;
-}
-div#content div.callout {
-  @apply my-4 p-4;
-}
-div#content div.info {
-  @apply bg-blue-200 dark:bg-blue-900/30;
-}
-div#content div.warn {
-  @apply bg-amber-200 dark:bg-amber-900/30;
-}
-div#content details summary {
-  cursor: pointer;
-  @apply text-yellow-800 dark:text-yellow-400;
-}
-div#content details summary > * {
-  display: inline;
-}
-div#content .exercise {
-  @apply pb-4;
-}
-div#content .exercise * {
-  grid-column-start: main-start;
-  grid-column-end: main-end;
-}
-div#content .exercise pre {
-  grid-column-start: main-start;
-  grid-column-end: overflow-end;
-}
-div#content .solution {
-  @apply pb-4;
-  grid-column-start: main-start;
-  grid-column-end: overflow-end;
-}
-div#content .solution details .solution-body {
-  display: grid;
-  grid-template-columns:
-    [main-start] minmax(20ch, 70ch) [main-end] minmax(0ch, 20ch)
-    [overflow-end];
-}
-div#content .solution details .solution-body * {
-  grid-column-start: main-start;
-  grid-column-end: main-end;
-}
-div#content .solution details .solution-body pre {
-  grid-column-start: main-start;
-  grid-column-end: overflow-end;
-}
+div#content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-sans font-semibold tracking-tight;
+  }
+  h1 {
+    @apply text-4xl mb-9;
+  }
+  h2 {
+    @apply text-2xl mt-6 mb-4;
+  }
+  h3 {
+    @apply text-xl mt-4 mb-2;
+  }
+  h4 {
+    @apply text-lg mt-4 mb-2;
+  }
+  h5 {
+    @apply text-lg mt-4 mb-2;
+  }
 
-/** SYNTAX HIGHLIGHTING **/
-div#content pre {
-  @apply mb-4 px-4 py-2 bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-200 rounded-md overflow-x-auto;
-}
-div#content code {
-  @apply text-sm;
-  font-family: "Source Code Pro", ui-monospace, monospace;
-}
-div#content pre code .number-literal,
-.char-literal,
-.boolean-literal,
-.string-literal {
-  @apply text-sky-300;
-}
-div#content pre code .keyword {
-  @apply text-rose-400;
-}
-div#content pre code .identifier {
-  @apply text-pink-300;
-}
-div#content pre code .type-name {
-  @apply text-green-300;
-}
-div#content pre code .declaration-name {
-  @apply text-blue-300;
-}
-div#content pre code .comment {
-  @apply italic;
+  p {
+    @apply mb-4;
+  }
+
+  a {
+    @apply underline decoration-dotted decoration-1 hover:decoration-solid;
+  }
+
+  ol.arabic {
+    @apply list-decimal list-outside pl-4 mb-4;
+  }
+  ul {
+    @apply list-disc list-outside pl-4 mb-4;
+  }
+
+  table.footnote tbody tr td {
+    @apply pr-4 text-sm;
+  }
+
+  div.doodle {
+    @apply my-4 mx-auto;
+  }
+  p img {
+    @apply my-4 mx-auto;
+  }
+
+  div.callout {
+    @apply my-4 p-4;
+  }
+  div.info {
+    @apply bg-blue-200 dark:bg-blue-900/30;
+  }
+  div.warn {
+    @apply bg-amber-200 dark:bg-amber-900/30;
+  }
+
+  details summary {
+    cursor: pointer;
+    @apply text-yellow-800 dark:text-yellow-400;
+
+    > * {
+      display: inline;
+    }
+  }
+
+  .exercise {
+    @apply pb-4;
+
+    * {
+      grid-column-start: main-start;
+      grid-column-end: main-end;
+    }
+    pre {
+      grid-column-start: main-start;
+      grid-column-end: overflow-end;
+    }
+  }
+
+  .solution {
+    @apply pb-4;
+    grid-column-start: main-start;
+    grid-column-end: overflow-end;
+
+    details .solution-body {
+      display: grid;
+      grid-template-columns:
+        [main-start] minmax(20ch, 70ch) [main-end] minmax(0ch, 20ch)
+        [overflow-end];
+
+      * {
+        grid-column-start: main-start;
+        grid-column-end: main-end;
+      }
+      pre {
+        grid-column-start: main-start;
+        grid-column-end: overflow-end;
+      }
+    }
+  }
+
+  /** SYNTAX HIGHLIGHTING **/
+  pre {
+    @apply mb-4 px-4 py-2 bg-slate-100 dark:bg-slate-950 text-slate-700 dark:text-slate-200 rounded-md overflow-x-auto;
+
+    code {
+      .number-literal,
+      .char-literal,
+      .boolean-literal,
+      .string-literal {
+        @apply text-sky-700 dark:text-sky-300;
+      }
+      .keyword {
+        @apply text-rose-600 dark:text-rose-400;
+      }
+      .identifier {
+        @apply text-pink-600 dark:text-pink-300;
+      }
+      .type-name {
+        @apply text-emerald-700 dark:text-green-300;
+      }
+      .declaration-name {
+        @apply text-blue-600 dark:text-blue-300;
+      }
+      .comment {
+        @apply italic text-slate-400 dark:text-slate-400;
+      }
+    }
+  }
+
+  code {
+    @apply text-sm;
+    font-family: "Source Code Pro", ui-monospace, monospace;
+  }
 }
 
 footer {
@@ -291,35 +426,26 @@ footer {
 
 /** THEME TOGGLE SWITCH **/
 .toggle-button {
-  @apply border-2 border-black bg-white;
-  border-radius: 30px;
-  width: 48px;
-  height: 24px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
+  @apply border-2 rounded-full w-12 h-6 p-0 relative inline-flex items-center align-middle cursor-pointer;
+  transition: border-color 0.3s;
+  border-color: var(--default-color);
+
+  .toggle-circle {
+    @apply rounded-full w-4 h-4 absolute;
+    background-color: var(--default-color);
+    left: 2px;
+    transition: left 0.3s;
+  }
+
+  &.dark-mode {
+    .toggle-circle {
+      left: 26px;
+    }
+  }
 }
 
-.toggle-button .toggle-circle {
-  @apply bg-black;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: left 0.3s, background-color 0.3s;
-}
-
-.toggle-button.active {
-  @apply bg-neutral-800 border-white;
-}
-
-.toggle-button.active .toggle-circle {
-  left: 26px;
-  @apply bg-white;
+.icon {
+  @apply inline stroke-slate-900 dark:stroke-white;
+  width: 1em;
+  height: 1em;
 }

@@ -14,9 +14,9 @@
   function updateToggleButtons(isDark) {
     document.querySelectorAll('.toggle-button').forEach(button => {
       if (isDark) {
-        button.classList.add('active');
+        button.classList.add('dark-mode');
       } else {
-        button.classList.remove('active');
+        button.classList.remove('dark-mode');
       }
     });
   }
