@@ -28,6 +28,7 @@
       type="text/css"
     />
     @:includeCss @:includeJs
+    <script src="/js/theme-toggle.js"></script>
     <script>
       /* for avoiding page load transitions */
     </script>
@@ -43,19 +44,27 @@
           >
             Contents
           </button>
+          <button
+            class="toggle-button"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark mode"
+            style="margin-left: 1rem;"
+          >
+            <span class="toggle-circle"></span>
+          </button>
           <div id="topbar-nav" popover="auto">
             <div id="topbar-nav-container" class="flex justify-items-center items-center h-dvh w-dvw">
               <div
-                class="p-4 mx-auto rounded-md bg-white border border-slate-900 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
+                class="p-4 mx-auto rounded-md bg-white dark:bg-slate-800 border border-slate-900 dark:border-slate-600 max-h-4/5 w-4/5 overflow-y-auto overflow-x-auto flex flex-col items-end"
               >
                 <button
-                  class="text-slate-900 hover:text-pink-800 focus:text-pink-800"
+                  class="text-slate-900 dark:text-slate-200 hover:text-pink-800 focus:text-pink-800"
                   popovertarget="topbar-nav"
                   popovertargetaction="hide"
                 >
                   ✕
                 </button>
-                <div class="w-full">
+                <div class="w-full text-slate-900 dark:text-slate-200">
                   @:navigationTree { entries = [{ target = "/", excludeSections =
                   true, depth = 4 }]}
                 </div>
@@ -64,7 +73,16 @@
           </div>
         </nav>
         <nav id="home">${?cst.home}</nav>
-        <nav id="external">${cst.community} ${cst.api} ${cst.source}</nav>
+        <nav id="external">
+          ${cst.community} ${cst.api} ${cst.source}
+          <button
+            class="toggle-button"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark mode"
+          >
+            <span class="toggle-circle"></span>
+          </button>
+        </nav>
       </div>
     </header>
 
