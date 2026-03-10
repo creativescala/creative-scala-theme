@@ -400,7 +400,7 @@ div#content {
         @apply text-rose-600 dark:text-rose-400;
       }
       .identifier {
-        @apply text-pink-600 dark:text-pink-300;
+        @apply text-pink-500 dark:text-pink-300;
       }
       .type-name {
         @apply text-emerald-700 dark:text-green-300;
