@@ -232,7 +232,7 @@ nav#contents {
     &.level5 a {
       @apply pl-16 mt-1;
     }
-    &.level4 a {
+    &.level6 a {
       @apply pl-20 mt-1;
     }
 

@@ -563,7 +563,7 @@ nav#contents {
       margin-top: var(--spacing);
       padding-left: calc(var(--spacing) * 16);
     }
-    &.level4 a {
+    &.level6 a {
       margin-top: var(--spacing);
       padding-left: calc(var(--spacing) * 20);
     }
