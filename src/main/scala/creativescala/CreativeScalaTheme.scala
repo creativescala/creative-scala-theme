@@ -34,7 +34,7 @@ final case class CreativeScalaTheme(
     source: ExternalLink,
     jsPaths: Seq[Path],
     cssPaths: Seq[Path],
-    mainNavigationDepth: Int = 2
+    mainNavigationDepth: Int = 4
 ) {
   def addJs(path: Path): CreativeScalaTheme =
     this.copy(jsPaths = path +: jsPaths)

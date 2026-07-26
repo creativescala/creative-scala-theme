@@ -50,7 +50,7 @@
                 </button>
                 <div class="w-full">
                   @:navigationTree { entries = [{ target = "/", excludeSections =
-                  true, depth = 4 }]}
+                  true, depth = ${helium.site.mainNavigation.depth} }]}
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@
       <nav id="contents">
         <div>
           @:navigationTree { entries = [ { target = "/", excludeSections = true,
-          depth = 4 } ] }
+          depth = ${helium.site.mainNavigation.depth} } ] }
         </div>
       </nav>
       <div id="contentbar">
