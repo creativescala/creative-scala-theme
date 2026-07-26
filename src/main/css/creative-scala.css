@@ -143,6 +143,12 @@ header {
             &.level4 a {
               @apply pl-12 mt-1;
             }
+            &.level5 a {
+              @apply pl-16 mt-1;
+            }
+            &.level6 a {
+              @apply pl-20 mt-1;
+            }
 
             &.active a {
               @apply hover:ring-0 focus:ring-0;
@@ -222,6 +228,12 @@ nav#contents {
     }
     &.level4 a {
       @apply pl-12 mt-1;
+    }
+    &.level5 a {
+      @apply pl-16 mt-1;
+    }
+    &.level4 a {
+      @apply pl-20 mt-1;
     }
 
     &.active a {
