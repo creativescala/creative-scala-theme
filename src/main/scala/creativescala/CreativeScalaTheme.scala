@@ -33,7 +33,8 @@ final case class CreativeScalaTheme(
     api: ExternalLink,
     source: ExternalLink,
     jsPaths: Seq[Path],
-    cssPaths: Seq[Path]
+    cssPaths: Seq[Path],
+    mainNavigationDepth: Int = 2
 ) {
   def addJs(path: Path): CreativeScalaTheme =
     this.copy(jsPaths = path +: jsPaths)
@@ -53,6 +54,9 @@ final case class CreativeScalaTheme(
   def withSource(source: ExternalLink): CreativeScalaTheme =
     this.copy(source = source)
 
+  def withMainNavigationDepth(depth: Int): CreativeScalaTheme =
+    this.copy(mainNavigationDepth = depth)
+
   val cssPath = Path.Root / "css" / "creative-scala.css"
   val tocJsPath = Path.Root / "js" / "toc.js"
   val solutionJsPath = Path.Root / "js" / "solution.js"
@@ -71,6 +75,7 @@ final case class CreativeScalaTheme(
           .withValue("cst.community", community.render)
           .withValue("cst.api", api.render)
           .withValue("cst.source", source.render)
+          .withValue("helium.site.mainNavigation.depth", mainNavigationDepth)
           .build
 
       def build[F[_]: Async]: Resource[F, Theme[F]] =
