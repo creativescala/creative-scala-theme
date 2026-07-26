@@ -23,7 +23,7 @@ function tocPatch() {
   //
   // A Hunk with one level of children is a Chapter and those children are Sections
   //
-  // A Hunk with two levels of children is a Part, which children who are
+  // A Hunk with two levels of children is a Part, with children who are
   // Chapters, and those children have Section children.
   //
   // The input is a flat list of Nodes. We use clases on the Nodes to determine
